@@ -12,6 +12,8 @@ for(int o=0;o<1000;++o)
    cin>>a;
    num=ct(a);
    cout<<num<<endl;
+for(int o=0;o<1000;++o)
+  a[o]='s';
    
  }
  return 0;
