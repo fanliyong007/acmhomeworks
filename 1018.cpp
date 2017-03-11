@@ -8,8 +8,8 @@ int fun(const int b)
     {
         z+=log10(k);
     }
-    int answer=(int)z++;
-    return answer;
+    z++;
+    return z;
 }
 int main()
 {
