@@ -38,3 +38,42 @@ int main()
     foundnumber=a[search(foundnumber,a,n)];
     cout<<foundnumber;
 }
+//标准版 
+int BinarySearch(int a[],int size,int p)
+{
+    int L=0;
+    int R=size-1;
+    while(L<=R)
+    {
+        int mid=L+(R-L)/2;
+        if(p==a[mid])
+            return mid;
+        else if(p>a[mid])
+            L=mid+1;
+        else 
+            R=mid-1;
+    }
+    return -1; 
+}
+//查找比给定整数p小的，下标最大的元素
+int LowerBound(int a[],int size,int p)
+{
+    int L=0;
+    int R=size-1;
+    int lastPos=-1;
+    while(L<=R)
+    {
+        int mid=L+(R-L)/2;
+        if(a[mid]>=p)
+            R=mid-1;
+        else
+        {
+            lasePos=mid;
+            L=mid+1;
+        }
+    }
+    return lastPos;
+}
+//STL版本，需要头文件#include<algorithm>
+binary_search(数组名+n1,数组名+n2,值)//查找区间[n1,n2)内的值返回值为true（找到），false（没找到）
+
