@@ -1,34 +1,40 @@
 #include<iostream>
 #include<stack>
 #include<cstring>
+#define max 100
 using namespace  std;
-void fan(string a,string b,int cs)
+void fan(char achar[],char bchar[],int cs)
 {
     stack<char>stk;
-    const char*achar=a.c_str();
-    const char*bchar=b.c_str();
-    bool flag1[cs]={true};
-    bool flag3[cs]={true};
+    bool flag1[max];
     bool flag2=true;
     int x=0;
+    int y=0;
+    for(int l=0;l<cs*2;l++)
+        flag1[l]=true;//初始化所有元素为进
     for(int i=0;i<cs;i++)
     {
-        stk.push(achar[i]);
-        if(stk.top()==bchar[x])
+        stk.push(achar[i]);//把元素压进来
+        if(stk.top()==bchar[x]&&(i!=cs-1))//如果顶层元素与序列b的首位元素相同那么把它弹出去，并标记此元素为进出
         {
             stk.pop();
-            flag1[i]=false;
-            flag3[i]=true;
-            x++;
+            x++;//此值用于标记进出元素位置
+            y++;
+            flag1[y]=false;
+            y++;
+        }
+        else
+        {
+            y++;//否则就定位到下一个元素
         }
     }
     for(int j=x;j<cs;j++)
     {
-        if(stk.top()==bchar[j])
+        if(bchar[j]==stk.top())//如果现在顶层元素与序列b剩下的元素相同那么弹出并且标记出去
         {
             stk.pop();
-            flag1[j]=true;
-            flag3[j]=false;
+            flag1[y]=false;
+            y++;
         }
         else
         {
@@ -43,32 +49,25 @@ void fan(string a,string b,int cs)
     else
     {
         cout<<"Yes."<<endl;
-        for(int k=0;k<cs;k++)
+        for(int k=0;k<cs*2;k++)
         {
             if(flag1[k])
-                cout<<"in"<<endl;
+               cout<<"in"<<endl;
             else
-                cout<<"out"<<endl;
-        }    
-        for(int l=0;l<cs;l++)
-        {
-            if(flag3[l])
-                cout<<"in"<<endl;
-            else
-                cout<<"out"<<endl;
-        }    
+                cout<<"out"<<endl;   
+        }                   
     }
 }
 int main()
 {
     int n;
-    string astring;
-    string bstring;
     while(cin>>n)
     {
-        cin>>astring;
-        cin>>bstring;
-        fan(astring,bstring,n);
+        char a[n];
+        char b[n];
+        cin>>a;
+        cin>>b;
+        fan(a,b,n);
         cout<<"FINISH"<<endl;
     }
     return 0;
