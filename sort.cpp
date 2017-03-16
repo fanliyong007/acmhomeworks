@@ -11,10 +11,14 @@ int main()
     struct 结构名
     {
         bool operateor(const T & a1,T & a2){
-
+            return a1>a2;
             //若a1在a2前面则返回true
             //否则返回false
         }
     }
     return 0;
 }
+//第三个参数
+less<数据类型>()//从小到大排序
+
+greater<数据类型>()//从大到小排序
