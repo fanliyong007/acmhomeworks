@@ -22,3 +22,23 @@ int main()
 less<数据类型>()//从小到大排序
 
 greater<数据类型>()//从大到小排序
+qsort ( 数组名 ，元素个数，元素占用的空间(sizeof)，比较函数)
+比较函数是一个自己写的函数 遵循 int com(const void *a,const void *b) 的格式。
+当a b关系为 > < = 时，分别返回正值 负值 零 （或者相反）。
+使用a b 时要强制转换类型，从void * 转换回应有的类型后，进行操作。
+数组下标从零开始,个数为N, 下标0-(n-1)。
+实例：
+int compare(const void *a,const void *b)
+{
+  return *(int*)b-*(int*)a;  
+}
+int main()
+{
+  int a[20]={2,4,1,23,5,76,0,43,24,65},i;
+  for(i=0;i<20;i++)
+  cout<<a[i]<<endl;
+  qsort((void *)a,20,sizeof(int),compare);
+  for(i=0;i<20;i++)
+  cout<<a[i]<<endl;
+  return 0;
+}
