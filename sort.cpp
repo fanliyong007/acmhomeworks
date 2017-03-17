@@ -37,8 +37,11 @@ int main()
   int a[20]={2,4,1,23,5,76,0,43,24,65},i;
   for(i=0;i<20;i++)
   cout<<a[i]<<endl;
-  qsort((void *)a,20,sizeof(int),compare);
+  qsort(a,20,sizeof(int),compare());
   for(i=0;i<20;i++)
   cout<<a[i]<<endl;
   return 0;
 }
+//qsort 函数执行期间，需要比较两个元素哪个应在前面时，就以两个元素的地址作为参数，调用 MyCompare 函数。
+//如果返回值小于0，则qsort 就得知第一个元素应该在前，如果返回值大于0，则第一个元素应该在后。
+//如果返回值等于0，则哪个在前都行。

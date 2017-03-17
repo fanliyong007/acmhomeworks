@@ -7,26 +7,26 @@ int  compare(const void *a,const void *b)
     {
         int x=-*(int*)a;
         if(x>*(int*)b)
-            return *(int*)a>*(int*)b;
+            return -1;
         else
-            return *(int*)b>*(int*)a;
+            return 1;
     }
     else if(*(int*)b<0&&*(int*)a>=0)
     {
         int x=-*(int*)b;
         if(x>*(int*)a)
-            return *(int*)b>*(int*)a;
+            return 1;
         else
-            return *(int*)a>*(int*)b;
+            return -1;
     }
     else if(*(int*)b<0&&*(int*)a<0)
     {
-        int x=*(int*)b;
-        int y=*(int*)a;
+        int x=-*(int*)a;
+        int y=-*(int*)b;
         if(x>y)
-            return *(int*)b-*(int*)a;
+            return -1;
         else
-             return *(int*)a-*(int*)b;
+             return 1;
     }
     else
         return *(int*)b-*(int*)a;
