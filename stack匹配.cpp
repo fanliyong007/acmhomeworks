@@ -5,7 +5,7 @@
 #include<iostream>
 #include<stack>
 #include<cstring>
-#define max 100
+#define max 100 
 using namespace std;
 bool cp(char a)
 {
