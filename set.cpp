@@ -14,7 +14,12 @@ int main()
     set<int>::iterator i;
     for(i=st.begin();i!=st.end();++i)
         cout<<*i<<",";//输出：1，2，3，5，6，7，8，12，
-    cout<<endl;
+r<set<int>::iterator,bool>等价于
+    // struct
+    // {
+    //     set<int>::iterator first;
+    //     bool second;
+    // };    cout<<endl;
     pair<set<int>::iterator,bool>result=st.insert(2);
     // pair<set<int>::iterator,bool>等价于
     // struct
