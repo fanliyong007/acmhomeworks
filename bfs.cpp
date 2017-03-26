@@ -5,7 +5,7 @@
 #include <sstream>
 using namespace std;
 queue<string>que;
-bool cmpstr(string a,string b)
+bool cmpstr(string a,char b)
 {
     int count=a.length();
     bool flag=false;
@@ -42,7 +42,7 @@ void bfs(int n)
     }
     while(!que.empty())
     {
-        ahead=que.front();
+        qhead=que.front();
         que.pop();
         for(int i=1;i<=n;i++)
         {
