@@ -5,30 +5,30 @@ void swap(int a,int b)
     int temp=a;
     a=b;
     b=temp;
+    return;
 }
 void quicksort(int num[],int left,int right)
 {
-    int temp=num[left];
-    int i=left;
-    int j=right;
-    if(i>j)
+    int l=left;
+    int r=right;
+    int temp=num[l];
+    if(l>r)
         return;
-    while(i!=j)
+    while(l!=r)
     {
-        while(num[j]>=temp&&i<j)
-            j--;
-        while(num[i]<=temp&&i<j)
-            i++;
-        if(i<j)
-            swap(num[i],num[j]);
-    } 
-    num[left]=num[i];
-    num[i]=temp;
-    quicksort(num,left,i-1);
-    quicksort(num,i+1,right);
+        while(num[r]>=temp&&l<r)
+            r--;
+        while(num[l]<=temp&&l<r)
+            l++;
+        if(l<r)
+            swap(num[l],num[r]);
+    }
+    num[left]=num[l];
+    num[l]=temp;
+    quicksort(num,left,l-1);
+    quicksort(num,l+1,right);
     return;
-}   
-
+}
 int main()
 {
     int n;
@@ -39,7 +39,7 @@ int main()
         {
             cin>>a[i];
         }
-        quicksort(a,0,n);
+        quicksort(a,0,n-1);
         for(int i=0;i<n;i++)
         {
             cout<<a[i]<<" ";
