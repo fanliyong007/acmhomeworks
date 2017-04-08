@@ -1,17 +1,27 @@
 #include<iostream>
+//#include<algorithm>//swap
 using namespace std;
-void swap(int a,int b)
-{
-    int temp=a;
-    a=b;
-    b=temp;
-    return;
-}
+// void swapint(int a,int b)
+// {
+//     int* tempa=0;
+//     tempa=&a;
+//     int* tempb=0;
+//     tempb=&b;
+//     (int *)a=tempb;
+//     (int *)b=tempa;
+// }
+// void swap(int & __restrict a, int & __restrict b)  
+// {  
+//     a ^= b;  
+//     b ^= a;  
+//     a ^= b;  
+// } 
 void quicksort(int num[],int left,int right)
 {
     int l=left;
     int r=right;
     int temp=num[l];
+    int t=0;
     if(l>r)
         return;
     while(l!=r)
@@ -21,7 +31,15 @@ void quicksort(int num[],int left,int right)
         while(num[l]<=temp&&l<r)
             l++;
         if(l<r)
-            swap(num[l],num[r]);
+        {
+            //cout<<"num[r]:"<<num[r]<<" num[l]"<<num[l]<<endl;
+            swap(num[r],num[l]);
+            // t=num[r];
+            // num[r]=num[l];
+            // num[l]=t;
+            //cout<<"num[r]:"<<num[r]<<" num[l]"<<num[l]<<endl;
+        }
+          
     }
     num[left]=num[l];
     num[l]=temp;
