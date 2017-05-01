@@ -37,7 +37,7 @@ int main()
   int a[20]={2,4,1,23,5,76,0,43,24,65},i;
   for(i=0;i<20;i++)
   cout<<a[i]<<endl;
-  qsort(a,20,sizeof(int),compare());
+  qsort(a,20,sizeof(int),compare);
   for(i=0;i<20;i++)
   cout<<a[i]<<endl;
   return 0;
