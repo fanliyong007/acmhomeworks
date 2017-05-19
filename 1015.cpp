@@ -1,47 +1,56 @@
 #include<iostream>
 #include<cstring>
 #include<cstdlib>
+#include<cmath>
 using namespace std;
-int num,sum,len;
+int num,len;
 string word;
-char danci[6];
+char danci[6]={0};
 bool flag[6];
-int change(char x)
+int change(char x){int a=(int)x-64;return a;}
+int cp()
 {
-    int a=(int)x-64;
-    return a; 
-}
-long cp(char x[])
-{
-    long  sum=1;
-    
+    int  sum=0;
+    for(int i=0;i<5&&danci[i]!='\0';i++) 
+    {
+        if(i%2==0)
+            sum-=(int)pow((double)change(danci[i]),i+1);
+        else
+            sum+=(int)pow((double)change(danci[i]),i+1);
+    }
     return sum;
 }
 void dfs(int x)
 {
-    if(cp(danci)==num)
+    if(cp()==num)
     {
-        cout<<danci<<endl;
+        for(int i=0;i<5;i++)
+            cout<<danci[i];
+        cout<<endl;
+        return;
     }
-    else 
-    {
-        for(int i=1;i<len&&x<=5;i++)
-        { 
-            if(flag[i])
-            {
-                flag[i]=false;
-                danci[x]=word[i];
-                dfs(x+1);
-                flag[i]=true;
-            }  
-        } 
-    }
+    for(int i=0;i<len&&x<5;i++)
+    { 
+        if(flag[i])
+        {
+            danci[x]=word[i];
+            flag[i]=false;
+            dfs(x+1);
+            flag[i]=true;
+        }
+    }    
+    return;
 }
 int main()
 {
     
     while(true)
     {
+        for(int i=0;i<5;i++)
+        {
+            danci[i]='\0';
+            flag[i]=true;
+        }
         cin>>num>>word;
         if(num==0&&word=="END") 
         {
@@ -49,13 +58,7 @@ int main()
             break;
         }
         len=word.length();
-        dfs(1);
-        for(int i=0;i<=5;i++)
-        {
-            danci[i]='\0';
-            flag[i]=true;
-        }
-        sum=0;
+        dfs(0);
     }
     return 0;
 }
