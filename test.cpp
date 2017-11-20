@@ -1,20 +1,35 @@
-#include<stdio.h>
 #include<iostream>
 using namespace std;
-int main()
-{ int i,x,y,a;
-float sum=0;
-x=2;
-y=1;
-for(i=1;i<=8;i++)
+class Point
 {
-sum+=(float)(x)/y;
-// printf("%d/%d\n",x,y);
-a=x;
-x=x+y;
-y=a;
-}
-printf("%7.5f\n",sum);
-cin>>x;
-return 0;
+    private:
+        double x,y;
+    public:
+        Point(){};
+        Point(double a,double b)
+        {
+            x=a;
+            y=b;
+        }
+        void SetXY(double a,double b)
+        {
+            x=a;
+            y=b;
+        }
+        void Show()
+        {
+            cout<<"x="<<x<<",y="<<y<<endl;
+        }
+
+};
+int main()
+{
+    Point a;
+    Point b(18.5,10.6);
+    a.SetXY(10.6,18.5);
+    a.Show();
+    b.Show(); 
+    while(true)
+    {}
+    return 0;
 }
