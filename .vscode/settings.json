@@ -20,5 +20,6 @@
         "type_traits": "cpp",
         "typeinfo": "cpp",
         "iostream": "cpp"
-    }
+    },
+    "git.ignoreLimitWarning": true
 }
