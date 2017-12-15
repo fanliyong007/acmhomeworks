@@ -4,9 +4,9 @@ using namespace std;
 int main()
 {
     int x=0;
-    bool prime[100000];
+    bool prime[10000];
     memset(prime,true,sizeof(prime));
-    for(int i=3;i<100000;i++)
+    for(int i=3;i<10000;i++)
     {
         for(int k=i-1;k>1;k--)
         {
@@ -24,7 +24,7 @@ int main()
              if((x%i==0)&&prime[i])
              {
                 x/=i;
-                if(x!=0)
+                if(x!=1)
                     cout<<i<<"*";
                 else
                     cout<<i;    
