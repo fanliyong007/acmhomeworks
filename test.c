@@ -1,15 +1,32 @@
 #include"stdio.h"
+#include"time.h"
+int readCard()
+{
+    int a;
+    scanf("%d",&a);
+    return a;
+}
 int main()
 {
-    for(int i=1;i<=5;i++)
+   
+    while(1)
     {
-        for(int j=5-i;j>0;j--)
-            printf(" ");
-        for(int k=2*i-1;k>0;k--)
-            printf("*");
-        printf("\n");
+        int flag=0;
+        time_t starttime;
+        time_t endtime;
+        flag=readCard();
+        if(flag!=0)
+        {
+            time(&starttime);
+            while(1)
+            {
+                if(flag!=readCard())
+                {
+                    time(&endtime); 
+                    break;
+                }
+            }
+             printf("time=%.0f s",-difftime(starttime, endtime));
+        }   
     }
-    int c;
-    scanf("%d",&c);scanf("%d",&c);
-    return 0;
 }
