@@ -30,6 +30,7 @@ fclose(fout);
 在前面加上你要输入的文件和输出的文件名,这样就可以有选择性的操作文件了。
 //memset()在c++中头文件<memory.h>可用在g++中使用<string.h>或<cstring>
 void * memset ( void * ptr, int value, size_t num );
+当value为其他类型的值时，只能填充0或-1，以为0的补码全为0，-1的补码全为1.
 ptr指向要填充的内存块的指针。
 Pointer to the block of memory to fill.
 value 要设置的值。值传递为int，但函数填充使用此值的无符号的字符转换的内存块.
