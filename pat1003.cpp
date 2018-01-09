@@ -5,9 +5,9 @@
 int city = 0, road = 0, begin = 0, end = 0, tmp = 0, shortist = 999,teams=0;
 int cityroad[500][500];
 int man[500];
+bool book2[500];
 bool book[500];
 bool flag=false;
-
 
 void dfs(int start,int stop)
 {
@@ -15,7 +15,10 @@ void dfs(int start,int stop)
     {
         tmp+=cityroad[start][stop];
         flag = true;
-        return;
+        for (int i = 0; i < city;i++)
+            if(book[i])
+                book2[i]= true;
+            return;
     }
     for (int i = 0; i < city ;i++)
     {
@@ -37,6 +40,7 @@ int main()
         int cityone=0,citytwo=0;
         shortist=999,teams=0;
         memset(book,false,sizeof(book));
+        memset(book2,false,sizeof(book2));
         memset(cityroad,-1,sizeof(cityroad));
         for(int j=0;j<city;j++)
             scanf("%d",&man[j]);
@@ -57,11 +61,11 @@ int main()
             dfs(begin, i);
             if (tmp < shortist && flag)
             {
-                shortist=tmp;  
-            }
+                shortist=tmp;
+            }  
         }
-        for (int i = 0; i < city;i++)
-            if(book[i]==true)
+        for (int i = 0; i < city; i++)
+            if(book2[i])
                 teams += man[i];
         printf("%d %d\n", shortist, teams);
     }
