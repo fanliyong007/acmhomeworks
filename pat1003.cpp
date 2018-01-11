@@ -18,7 +18,7 @@ void dfs(int start,int stop)
         for (int i = 0; i < city;i++)
             if(book[i])
                 book2[i]= true;
-            return;
+        return;
     }
     for (int i = 0; i < city ;i++)
     {
@@ -65,7 +65,7 @@ int main()
             }  
         }
         for (int i = 0; i < city; i++)
-            if(book2[i])
+            if(book2[i]&&i!=begin&&i!=end)
                 teams += man[i];
         printf("%d %d\n", shortist, teams);
     }
