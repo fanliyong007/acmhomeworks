@@ -26,9 +26,7 @@ void dfs(int start,int stop)
             continue;
         book[i] = true;
         tmp += cityroad[stop][i];
-        teams += man[stop];
         dfs(stop, i);
-        teams -= man[stop];
         book[i] = false;
     }
 }
