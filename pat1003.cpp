@@ -1,12 +1,14 @@
 #include<iostream>
 #include<cstdio>
-#include<string.h>
+#include<cstring>
+#define Max 0x7fffffff
 
-int city = 0, road = 0, begin = 0, end = 0, tmp = 0, shortist = 999,teams=0;
-int cityroad[500][500];
-int man[500];
-bool book2[500];
-bool book[500];
+int city = 0, road = 0, begin = 0, end = 0, tmp = 0,teams=0;
+long shortist = Max;
+int cityroad[512][512];
+int man[512];
+bool book2[512];
+bool book[512];
 bool flag=false;
 
 void dfs(int start,int stop)
@@ -20,15 +22,16 @@ void dfs(int start,int stop)
                 book2[i]= true;
         return;
     }
+    book[start] = true;
     for (int i = 0; i < city ;i++)
     {
-        if(book[i] == true||cityroad[stop][i]==-1||i==start)
+        if(book[i] == true||cityroad[stop][i]==-1)
             continue;
-        book[i] = true;
         tmp += cityroad[stop][i];
         dfs(stop, i);
-        book[i] = false;
+        tmp -= cityroad[stop][i];
     }
+    book[start] = false;
 }
 
 int main()
@@ -36,7 +39,7 @@ int main()
     while(scanf("%d%d%d%d",&city,&road,&begin,&end)!=EOF)
     {
         int cityone=0,citytwo=0;
-        shortist=999,teams=0;
+        shortist=Max,teams=0;
         memset(book,false,sizeof(book));
         memset(book2,false,sizeof(book2));
         memset(cityroad,-1,sizeof(cityroad));
@@ -46,6 +49,7 @@ int main()
         {
             scanf("%d%d",&cityone,&citytwo);
             scanf("%d",&cityroad[cityone][citytwo]);
+            cityroad[citytwo][cityone] = cityroad[cityone][citytwo];
         }
         teams += man[begin];
         teams += man[end];       
@@ -56,11 +60,12 @@ int main()
             tmp = 0;
             flag = false;
             book[i] = true;
+            tmp += cityroad[begin][i];
             dfs(begin, i);
             if (tmp < shortist && flag)
             {
                 shortist=tmp;
-            }  
+            }
         }
         for (int i = 0; i < city; i++)
             if(book2[i]&&i!=begin&&i!=end)
