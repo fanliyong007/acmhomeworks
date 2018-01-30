@@ -3,10 +3,7 @@
 using namespace std;
 int main()
 {
-    int a;
-    cout<<"INT_MAX="<<INT_MAX<<endl;
-    cout<<"INT_MIN="<<INT_MIN<<endl;
-    cout<<"UINT_MAX="<<UINT_MAX<<endl;
-    cin>>a;
+    -2147483648 < 2147483647 ? printf("true") : printf("false");
+    cin.get();
     return 0;
 }
