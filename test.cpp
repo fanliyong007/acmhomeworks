@@ -3,12 +3,15 @@
 using namespace std;
 int main()
 {
-    html;
-    for(html a:x)
-    {
-        while(x=="string")
-            x.splite(8 : 17);
-    }
+    
+      while(true)
+      {
+          string a;
+          cin >> a;
+          cout << a.length()<<endl;
+          for (int i = 0; i <= a.length();i++)
+              cout << a[i];
+      }
     // -2147483648 < 2147483647 ? printf("true") : printf("false");
     // cin.get();
     // return 0;
