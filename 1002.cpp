@@ -30,7 +30,13 @@ int main()
         {
             cout << a[j];
         }
-        cout << endl;
+        if(i<num)
+            cout << endl<< endl;
+        else
+        {
+            cout << endl;
+        }
+
     }
     return 0;
 }
@@ -47,5 +53,4 @@ void myplus()
         a[0] = k + 1;
     else
         a[0] = k;
-
 }

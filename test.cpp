@@ -3,7 +3,13 @@
 using namespace std;
 int main()
 {
-    -2147483648 < 2147483647 ? printf("true") : printf("false");
-    cin.get();
-    return 0;
+    html;
+    for(html a:x)
+    {
+        while(x=="string")
+            x.splite(8 : 17);
+    }
+    // -2147483648 < 2147483647 ? printf("true") : printf("false");
+    // cin.get();
+    // return 0;
 }
