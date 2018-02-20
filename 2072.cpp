@@ -5,34 +5,29 @@ using namespace std;
 int main()
 {
     string a;
-    set<string>st;
+    set<string> words;
     while(true)
     {
-        int flag=0;
-        string b="";
         getline(cin,a,'\n');
-        if(a=="#")
+        if (a == "#")
             break;
-        int count=a.length();
-        for(int i=0;i<count;i++)
+        const char *expr = a.c_str();
+        char *word = new char[strlen(expr) + 1];
+        strcpy(word, expr);    
+        const char *space = " ";
+        char *p;
+        p = strtok(word, space);
+        while(p)
         {
-            if(a[i]<=122&&a[i]>=97)
-            {  
-                if(i==count-1)
-                    st.insert(b);  
-                b+=a[i];           
-            } 
-            else //if(b[0]!=' ')
-            {
-                st.insert(b);
-                b="";
-            }
+            string tmp = p;
+            words.insert(tmp);
+            // p = strtok(word, space);
+            p=strtok(NULL,space);
         }
-        // if(flag==count-1)
-        cout<<st.size()<<endl;
-        // else
-        //     cout<<st.size()+1<<endl;
-        st.clear();
+        cout << words.size() << endl;
+        words.clear();
     }
     return 0;
+        
+
 }
