@@ -29,7 +29,7 @@ int main()
                 }
             }
             printf("Case %d:\n", j);
-            printf("%d %d %d\n",max,pos1,pos2);
+            printf("%lld %d %d\n",max,pos1,pos2);
             if(j!=T)
                 printf("\n");
         }
