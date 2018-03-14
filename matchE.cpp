@@ -1,15 +1,26 @@
 #include<iostream>
-#include<cstring>
-#include<cmath>
+#define ll long long int
 using namespace std;
 int main()
 {
-    int n,m;
-    cin>>n;
-    while(n--)
+    ll num = 0;
+    int i = 0;
+    while(cin>>num)
     {
-        cin>>m;
-        cout<<(int)pow(2,m)-1<<endl;
+        if(i!=0)
+            cout << endl;
+        i = 1;
+        num = num > 0 ? num : -num;
+        ll sum = 0;
+        ll tmp = 0;
+        while(num>0)
+        {
+            tmp = num % 10;
+            num /= 10;
+            if(tmp%2==0)
+                sum += tmp;
+        }
+        cout << sum << endl;
     }
     return 0;
 }
