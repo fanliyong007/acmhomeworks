@@ -17,21 +17,13 @@ int main()
     {
         struct money data;
         double ans = 0;
-        scanf("%d %d %f %f %f", &data.y, &data.q, &data.e, &data.f, &data.g);
-        if(data.q<=100)
-        {
-            ans = data.y + (1 + 1.7 * data.y * data.q / 36500);
-        }
-        else
-        {
-            ans = data.y + (1 + 1.7 * data.y * data.q / 36500);
-            ans =ans+(data.q-100)
-        }
-        ans = ans + ans * 3.9 / 100;
-        printf("%.1f\n", ans);
+        scanf("%d %d %lf %lf %lf", &data.y, &data.q, &data.e, &data.f, &data.g);
+        ans = data.y * (1 + data.e /100*data.q/ 365);
+        ans = ans * (1 + data.g / 100 );
+        printf("%.1lf\n", ans);
         ans = 0;
-        ans = data.y * (1 + 3.7 / 100 * (data.q + 365) / 365);
-        printf("%.1f\n", ans);
+        ans = data.y * (1 + data.f/ 100 * (data.q + 365) / 365);
+        printf("%.1lf\n", ans);
 
     }
     return 0;
