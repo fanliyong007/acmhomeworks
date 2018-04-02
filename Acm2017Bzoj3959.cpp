@@ -34,9 +34,9 @@ int main()
         {
             scanf("%d",&s[i]);
             if(s[i]==1)
-                flag++;
+                flag++;//统计难度系数为1的题目
             if(s[i]<1)
-                flag2=1;
+                flag2=1;//标记是否有难度系数小于1的
         }
         if(N < 10 || N > 13)
         {
@@ -45,15 +45,15 @@ int main()
         }
         if(flag<2)
         {
-            printf("No\n");
+            printf("No\n");//如果有难度系数小于1的直接输出no
             continue;
         }
-        sort(s,s+N);
+        sort(s,s+N);//排序
         for (int i = 0; i < N-2; i++)
         {
             if(s[i+1]-s[i]>2)
             {
-                flag2=1;
+                flag2=1;//标记是否有有相邻的题目难度系数大于2的
             }
         }
         if(flag2==0)

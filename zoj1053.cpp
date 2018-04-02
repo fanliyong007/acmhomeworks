@@ -2,6 +2,7 @@
 #include<cstring>
 #include<algorithm>
 #include<memory.h>
+
 using namespace std;
 int main()
 {
