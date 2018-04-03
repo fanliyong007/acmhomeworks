@@ -287,17 +287,17 @@ Pair
 
 
 sort
-====
+=====
 <pre>
 <code>
-#include<iostream>
-#include<algorithm>
+#include < iostream>
+#include < algorithm>
 using namespace std;
 int main()
 {
     int a[]={10,9,8,7,6,5,4,3,2,1};
-    cout<<sort(a,a+sizeof(a));//普通排序格式为sort(数组名+要排序的下标，数组名+要结束的下标，排序规则)排序规则为空则是从小到大
-    cout<<sort(a,a+sizeof(a),greater<int>());//倒叙排序
+    cout<< sort(a,a+sizeof(a));//普通排序格式为sort(数组名+要排序的下标，数组名+要结束的下标，排序规则)排序规则为空则是从小到大
+    cout<< sort(a,a+sizeof(a),greater<int>());//倒叙排序
     //排序规则定制
     sort(数组+n1,数组+n2，排序规则结构名());
     struct 结构名
@@ -320,7 +320,8 @@ qsort ( 数组名 ，元素个数，元素占用的空间(sizeof)，比较函数
 当a b关系为 > < = 时，分别返回正值 负值 零 （或者相反）。
 使用a b 时要强制转换类型，从void * 转换回应有的类型后，进行操作。
 数组下标从零开始,个数为N, 下标0-(n-1)。
-实例：
+实例
+
 <pre>
 <code>
 int compare(const void *a,const void *b)
@@ -340,3 +341,63 @@ int main()
 </code>
 </pre>
 qsort 函数执行期间，需要比较两个元素哪个应在前面时，就以两个元素的地址作为参数，调用 MyCompare 函数。如果返回值小于0，则qsort 就得知第一个元素应该在前，如果返回值大于0，则第一个元素应该在后。如果返回值等于0，则哪个在前都行。
+
+类型转换
+=======
+## string转const char*
+<pre>
+<code>
+string s ="abc";
+constchar* c_s = s.c_str();
+</code>
+</pre>
+## const char*转string
+<pre>
+<code>
+   直接赋值即可
+constchar* c_s ="abc";
+string s(c_s);
+</code>
+</pre>
+## string转char*
+<pre>
+<code>
+string s ="abc";
+char* c;
+constint len = s.length();
+c =newchar[len+1];
+strcpy(c,s.c_str());
+</code>
+</pre>
+## char*转string
+<pre>
+<code>
+char* c ="abc";
+string s(c);
+</code>
+</pre>
+## const char*转char*
+<pre>
+<code>
+constchar* cpc ="abc";
+char* pc =newchar[100];//足够长
+strcpy(pc,c）
+</code>
+</pre>
+## int转string
+<pre>
+<code>
+int n = 0;
+std::stringstream ss;
+std::string str;
+ss<<n;
+ss>>str;
+</code>
+</pre>
+## string转int
+<pre>
+<code>
+std::string str = "123";
+int n = atoi(str.c_str());
+</code>
+</pre>
