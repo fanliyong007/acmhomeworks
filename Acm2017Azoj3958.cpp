@@ -12,7 +12,7 @@ int main()
     scanf("%d",&t);
     while (t--)
     {
-        int kobayashi=0,tohru=0;
+    int kobayashi=0,tohru=0;
         scanf("%d",&num);
         for(int i=0;i<num;i++)
         {

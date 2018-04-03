@@ -23,24 +23,32 @@ int main()
         memset(pi, 0, sizeof(pi));
         memset(ti, 0, sizeof(ti));
         scanf("%d", &n);
-        for (int i = 0; i < n;i++)
+        for (int i = 1; i <= n;i++)
             scanf("%d", &pi[i]);
-        for (int i = 0; i < n;i++)
+        for (int i = 1; i <= n;i++)
             scanf("%d", &ti[i]);
-        for (int i = 0; i < n;i++)
+        ti[0] = 0;
+        for (int i = 1; i <= n;i++)
         {
             sum += pi[i];
-            tmp.price = (double)sum / (i+1);
-            if(i==0)
-                tmp.time = ti[i+1]-ti[i]-1;
-            else if(tmp.time<ti[i]-ti[i-1])
-                tmp.time = ti[i]-ti[i-1];
-            if(tmp.price>cs.price)
+            tmp.price = (double)sum / (double)i;
+            if(tmp.time<ti[i]-ti[i-1])
+            {
+                tmp.time = ti[i] - ti[i - 1];
+            }
+            if(i==n)
+            {
+                if(tmp.price>cs.price)
+                {
+                    cs = tmp;
+                }
+                continue;
+            }
+            if(tmp.time<ti[i+1]-ti[i]&&tmp.price>cs.price)
             {
                 cs = tmp;
             }
         }
-
         printf("%.06lf %.06lf\n",cs.time,cs.price);
     }
     return 0;
