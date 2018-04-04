@@ -179,6 +179,16 @@ s.substr(5,6);//从索引5开始6个字符
 1．>> 从输入流读取一个string。
 2．<< 把一个string写入输出流。
 另一个函数就是getline(),他从输入流读取一行内容，直到遇到分行符或到了文件尾。
+<pre>
+<code>
+string stuff;
+cin >> stuff; //read a word
+getline(cin,stuff) //read a line,discard \n
+getline(stuff,':'); //read up to :,discard :
+</code>
+</pre>
+
+
 ### 2．8搜索与查找
 查找函数很多，功能也很强大，包括了：
 <pre>
