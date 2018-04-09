@@ -2,7 +2,7 @@ string
 ======
 之所以抛弃char*的字符串而选用C++标准程序库中的string类，是因为他和前者比较起来，不必担心内存是否足够、字符串长度等等，而且作为一个类出现，他集成的操作函数足以完成我们大多数情况下(甚至是100%)的需要。我们可以用 = 进行赋值操作，== 进行比较，+ 做串联（是不是很简单?）。我们尽可以把它看成是C++的基本数据类型。
 首先，为了在我们的程序中使用string类型，我们必须包含头文件 < string > 。如下：
-#include  < string >  注意这里不是string.h string.h是C字符串头文件
+# include  < string >  注意这里不是string.h string.h是C字符串头文件
 ## 1．声明一个C++字符串
 声明一个字符串变量很简单：
 string Str;
@@ -194,6 +194,7 @@ getline(stuff,':'); //read up to :,discard :
 <pre>
 <code>
 find()
+//size_type find(const string & str,size_type pos=0)const 从
 rfind()
 find_first_of()
 find_last_of()
@@ -411,3 +412,119 @@ std::string str = "123";
 int n = atoi(str.c_str());
 </code>
 </pre>
+## char*转数字
+<pre>
+<code>
+#include < stdlib.h>//头文件
+
+int atoi (const char * str);//char2int
+
+long atol(const char * str);//char2long
+
+long int strtol (const char* str, char** endptr, int base);
+/*
+【参数说明】str 为要转换的字符串，endstr 为第一个不能转换的字符的指针，base 为字符串 str 所采用的进制。
+【函数说明】strtol() 会将参数 str 字符串根据参数 base 来转换成长整型数(long)。参数 base 范围从2 至36，或0。参数base 代表 str 采用的进制方式，如base 值为10 则采用10 进制，若base 值为16 则采用16 进制等。strtol() 会扫描参数 str 字符串，跳过前面的空白字符（例如空格，tab缩进等，可以通过 isspace() 函数来检测），直到遇上数字或正负符号才开始做转换，再遇到非数字或字符串结束时('\0')结束转换，并将结果返回。
+两点注意： 
+当 base 的值为 0 时，默认采用 10 进制转换，但如果遇到 '0x' / '0X' 前置字符则会使用 16 进制转换，遇到 '0' 前置字符则会使用 8 进制转换。
+若endptr 不为NULL，则会将遇到的不符合条件而终止的字符指针由 endptr 传回；若 endptr 为 NULL，则表示该参数无效，或不使用该参数。
+【返回值】返回转换后的长整型数；如果不能转换或者 str 为空字符串，那么返回 0(0L)；如果转换得到的值超出 long int 所能表示的范围，函数将返回 LONG_MAX 或 LONG_MIN（在 limits.h 头文件中定义），并将 errno 的值设置为 ERANGE。*/
+
+unsigned long strtoul (const char* str, char** endptr, int base);
+
+double strtod (const char* str, char** endptr);//函数 strtod() 用来将字符串转换成双精度浮点数
+/*strtod() 函数会扫描参数str字符串，跳过前面的空白字符（例如空格，tab缩进等，可以通过 isspace() 函数来检测），直到遇上数字或正负符号才开始做转换，到出现非数字或字符串结束时('\0')才结束转换，并将结果返回。参数 str 字符串可包含正负号、小数点或E(e)来表示指数部分。如123. 456 或123e-2。若endptr 不为NULL，则会将遇到的不符合条件而终止的字符指针由 endptr 传回；若 endptr 为 NULL，则表示该参数无效，或不使用该参数。返回转换后的浮点型数；若不能转换或字符串为空，则返回 0.0。*/
+
+double atof (const char* str);//char2double
+/*它会扫描参数str字符串，跳过前面的空白字符（例如空格，tab缩进等，可以通过 isspace() 函数来检测），直到遇上数字或正负符号才开始做转换，而再遇到非数字或字符串结束时('\0')才结束转换，并将结果返回。参数str 字符串可包含正负号、小数点或E(e)来表示指数部分，如123. 456 或123e-2。
+返回转换后的浮点数；如果字符串 str 不能被转换为 double，那么返回 0.0。*/
+
+char*itoa(int value,char*string,int radix);
+/*int value 被转换的整数，char *string 转换后储存的字符数组，int radix 转换进制数，如2,8,10,16 进制等*/
+</code>
+</pre>
+## math.h
+* acos()
+求反余弦的值
+* cos()
+求余弦值
+* cosh()
+求双曲余玄值
+* exp()
+e的次幂函数(以e为底的x次方值)
+* frexp()
+把一个浮点数分解为尾数和指数
+* ldexp()
+返回x乘上2的exp次方的值
+* log()
+返回以e为底的对数值
+* log10()
+返回以10为底的对数值
+* pow()
+求x的y次方（次幂）
+* sin()
+正弦函数
+* sinh()
+双曲正玄函数
+* sqrt()
+求给定值的平方根
+* tan()
+正切函数
+* tanh()
+双曲线正切函数
+* fabs()
+求浮点数的绝对值
+* abs()
+求整数的绝对值
+* asin()
+反正弦函数
+* atan()
+反正切函数
+* atan2()
+求y/x的反正切值
+* ceil()
+向上取整，即求不小于某个数的最小整数
+* floor()
+向下取整，即求不大于某个数的最大整数
+* fmod()
+对浮点数取模（求余）
+* modf()
+将浮点数分解为整数和小数部分
+* hypot()
+求直角三角形的斜边长
+* pow10()
+求10的x次方（次幂）
+
+## ctype.h
+* isalnum()
+判断字符是否为英文字母或数字
+* isalpha()
+判断字符是否为英文字母
+* iscntrl()
+判断字符是否为ASCII码的控制字符
+* isdigit()
+判断字符是否为阿拉伯数字
+* isgraph()
+判断字符是否为除空格以外的可打印字符
+* islower()
+判断字符是否为小写字母
+* isprint()
+判断字符是否为可打印字符
+* isspace()
+判断字符是否为空白字符
+* ispunct()
+判断字符是否为标点符号或特殊字符
+* isupper()
+判断字符是否为大写英文字母
+* isxdigit()
+判断字符是否为16进制数字
+* toascii()
+将字符转换成对应的ASCII码
+* tolower()
+将大写字母转换为小写字母
+* toupper()
+将小写字母转换为大写字母
+* isascii()
+检测字符是否为ASCII字符
+* isblank()
+判断字符是否为TAB或空格
