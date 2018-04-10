@@ -194,7 +194,8 @@ getline(stuff,':'); //read up to :,discard :
 <pre>
 <code>
 find()
-//size_type find(const string & str,size_type pos=0)const 从
+//size_type find(const string & str,size_type pos=0)const 从字符串的pos位置开始，查找子字符串str。如果找到，则返回该子字符串首次出现时其首字符的所以；否则，返回string::npos
+//size_type find(const char* str,size_type pos=0)const 从字符串的pos位置开始，查找子字符串s。如果找到，则返回该子字符串首次出现时其首字符的所以；否则，返回string::npos
 rfind()
 find_first_of()
 find_last_of()
@@ -296,7 +297,6 @@ Pair
 *    pair<int, string> newone;
 *    newone = make_pair(a, m);
 
-
 sort
 =====
 <pre>
@@ -332,7 +332,6 @@ qsort ( 数组名 ，元素个数，元素占用的空间(sizeof)，比较函数
 使用a b 时要强制转换类型，从void * 转换回应有的类型后，进行操作。
 数组下标从零开始,个数为N, 下标0-(n-1)。
 实例
-
 <pre>
 <code>
 int compare(const void *a,const void *b)
@@ -352,6 +351,70 @@ int main()
 </code>
 </pre>
 qsort 函数执行期间，需要比较两个元素哪个应在前面时，就以两个元素的地址作为参数，调用 MyCompare 函数。如果返回值小于0，则qsort 就得知第一个元素应该在前，如果返回值大于0，则第一个元素应该在后。如果返回值等于0，则哪个在前都行。
+
+## 结构体排序
+<pre>
+<code>
+#include "stdafx.h"  
+#include<iostream>  
+#include<string>  
+#include<algorithm>  
+using namespace std;  
+struct student  
+{  
+    string name;//姓名  
+    int math;//数学成绩  
+    int english;//英语  
+};  
+int c =0;//控制排序规则  
+bool compare(student a, student b)  
+{  
+    if (c == 0)//按照姓名递增排序  
+    {  
+        return (a.name<=b.name);  
+    }  
+    else if (c == 1)//按照数学成绩递增排序  
+    {  
+        return (a.math <= b.math);  
+    }  
+    else//按照英语成绩递增排序  
+    {  
+        return (a.english <= b.english);  
+    }  
+}  
+int _tmain(int argc, _TCHAR* argv[])  
+{  
+    student array[3];  
+  
+    array[0].name = "John";  
+    array[0].math = 86;  
+    array[0].english = 91;  
+  
+    array[1].name = "Michelle";  
+    array[1].math = 85;  
+    array[1].english =95;  
+  
+    array[2].name = "Kim";  
+    array[2].math = 89;  
+    array[2].english = 60;  
+    cout << "原始顺序：" << endl;  
+    for (int i = 0; i <3; i++)  
+        cout << array[i].name << ' ' << array[i].math << ' ' << array[i].english << endl;  
+    cout << "按姓名递增排序：" << endl;  
+    c =0;  
+    sort(array,array+3,compare);  
+    for (int i = 0; i <3;i++)  
+        cout << array[i].name << ' ' << array[i].math << ' ' << array[i].english << endl;  
+    cout << "按数学成绩递增排序：" << endl;  
+    c =1;  
+    sort(array, array + 3, compare);  
+    for (int i = 0; i <3; i++)  
+        cout << array[i].name << ' ' << array[i].math << ' ' << array[i].english << endl;  
+    system("pause");  
+    return 0;  
+}  
+</code>
+</pre>
 
 类型转换
 =======
@@ -528,3 +591,624 @@ e的次幂函数(以e为底的x次方值)
 检测字符是否为ASCII字符
 * isblank()
 判断字符是否为TAB或空格
+
+list
+====
+ List将元素按顺序储存在链表中. 与 向量(vector)相比, 它允许快速的插入和删除，但是随机访问却比较慢。
+* assign() 给list赋值 
+* back() 返回最后一个元素 
+* begin() 返回指向第一个元素的迭代器 
+* clear() 删除所有元素 
+* empty() 如果list是空的则返回true 
+* end() 返回末尾的迭代器 
+* erase() 删除一个元素 
+* front() 返回第一个元素 
+* get_allocator() 返回list的配置器 
+* insert() 插入一个元素到list中 
+* max_size() 返回list能容纳的最大元素数量 
+* merge() 合并两个list 
+* pop_back() 删除最后一个元素 
+* pop_front() 删除第一个元素 
+* push_back() 在list的末尾添加一个元素 
+* push_front() 在list的头部添加一个元素 
+* rbegin() 返回指向第一个元素的逆向迭代器 
+* remove() 从list删除元素 
+* remove_if() 按指定条件删除元素 
+* rend() 指向list末尾的逆向迭代器 
+* resize() 改变list的大小 
+* reverse() 把list的元素倒转 
+* size() 返回list中的元素个数 
+* sort() 给list排序 
+* splice() 合并两个list 
+* swap() 交换两个list 
+* unique() 删除list中重复的元素
+
+* 1)、如何定义一个list对象
+<pre>
+<code>
+#include < list>
+int main (void)
+{
+ list<char > cList; //声明了list<char>模板类 的一个实例
+}
+</code>
+</pre>
+* 2)、使用list的成员函数push_back和push_front插入一个元素到list中 
+<pre>
+<code>
+cList. push_back(‘a’); //把一个对象放到一个list的后面
+cList. push_front (‘b’); //把一个对象放到一个list的前面
+</code>
+</pre>
+* 3)、使用list的成员函数empty()判断list是否为空 
+<pre>
+<code>
+if (cList.empty())
+{
+ printf(“this list is empty”);
+}
+</code>
+</pre>
+* 4)、用list< char >::iterator得到指向list的指针 
+<pre>
+<code>
+list< char>::iterator charIterator;
+for(cIterator = cList.Begin();cIterator != cList.end();cIterator++)
+{
+ printf(“%c”, *cIterator);
+} //输出list中的所有对象
+说明：cList.Begin()和cList.end()函数返回指向list< char >::iterator的指针，由于list采用链表结构，因此它不支持随机存取，因此不能用cList.begin()+3来指向list中的第四个对象，vector和deque支持随机存取。
+</code>
+</pre>
+* 5）、用STL的通用算法count()来统计list中的元素个数 
+<pre>
+<code>
+int cNum;
+char ch = ’b’;
+cNum = count(cList.Begin(), cList.end(), ch); //统计list中的字符b的个数
+说明：在使用count()函数之前必须加入#include <algorithm> 
+</code>
+</pre>
+* 6）、用STL的通用算法count_if ()来统计list中的元素个数 
+<pre>
+<code>
+const char c(‘c’);
+class IsC
+{
+public:
+ bool operator() ( char& ch )
+ {
+  return ch== c;
+ }
+};
+
+int numC;
+numC = count_if (cList.begin(), cList.end(),IsC());//统计c的数量；
+说明：count_if() 带一个函数对象的参数,函数对象是一个至少带有一个operator()方法的类函数对象被约定为STL算法调用operator时返回true或false。它们根据这个来判定这个函数。举个例子会 说的更清楚些。count_if()通过传递一个函数对象来作出比count()更加复杂的评估以确定一个对象是否应该被记数。
+
+</code>
+</pre>
+
+* 7）、使用STL通用算法find()在list中查找对象 
+<pre>
+<code>
+list< char>::iterator FindIterator;
+FindIterator = find(cList.begin(), cList.end(), ‘c’);
+If (FindIterator == cList.end())
+{
+ printf(“not find the char ‘c’!”);
+}
+else
+{
+ printf(“%c”, * FindIterator);
+}
+说明：如果没有找到指定的对象，就会返回cList.end()的值，找到了就返回一个指向对象iterator的指针。
+</code>
+</pre>
+* 8）、使用STL通用算法find_if()在list中查找对象
+<pre>
+<code>
+const char c(‘c’);
+class c
+{
+public:
+ bool operator() ( char& ch )
+ {
+  return ch== c;
+ }
+};
+list< char>::iterator FindIterator
+FindIterator = find_if (cList.begin(), cList.end(),IsC());//查找字符串c
+</code>
+</pre> 
+说明：如果没有找到指定的对象，就会返回cList.end()的值，找到了就返回一个指向对象iterator的指针。
+
+* 9）、使用list的成员函数sort()排序 
+<pre>
+<code>
+cList.sort();
+</code>
+</pre>
+* 10)、使用list的成员函数insert插入一个对象到list中 
+<pre>
+<code>
+cList.insert(cLiset.end, ‘c’); ///在list末尾插入字符‘c’
+
+char ch[3] ={‘a’, ‘b’, ‘c’};
+cList.insert(cList.end, &ch[0], & ch[3] ); //插入三个字符到list中
+</code>
+</pre>
+说明：insert()函数把一个或多个元素插入到指出的iterator位置。元素将出现在 iterator指出的位置以前。
+* 11)、如何在list中删除元素 
+<pre>
+<code>
+cList.pop_front(); //删除第一个元素
+cList.pop_back(); //删除最后一个元素
+cList. Erase(cList.begin()); //使用iterator删除第一个元素；
+cList. Erase(cList.begin(), cList.End()); //使用iterator删除所有元素；
+cList.remove(‘c’); //使用remove函数删除指定的对象；
+list<char>::iterator newEnd;
+//删除所有的’c’ ,并返回指向新的list的结尾的iterator
+newEnd = cList.remove(cList.begin(), cList.end(), ‘c’);
+</code>
+</pre>
+
+deque(双向队列) 
+==============
+deque是一种优化了的、对序列两端元素进行添加和删除操作的基本序列容器。它允许较为快速地随机访问，但它不像vector 把所有的对象保存在一块连续的内存块，而是采用多个连续的存储块，并且在一个映射结构中保存对这些块及其顺序的跟踪。向deque 两端添加或删除元素的开销很小。它不需要重新分配空间，所以向末端增加元素比vector 更有效。 
+
+* 1.Constructors 创建一个新双向队列 
+   语法: 
+    <pre>
+    <code>
+      deque();//创建一个空双向队列 
+      deque( size_type size );// 创建一个大小为size的双向队列 
+      deque( size_type num, const TYPE &val ); //放置num个val的拷贝到队列中 
+      deque( const deque &from );// 从from创建一个内容一样的双向队列 
+      deque( input_iterator start, input_iterator end ); 
+      // start 和 end - 创建一个队列，保存从start到end的元素。
+    </code>
+    </pre>
+* 2.Operators 比较和赋值双向队列 
+      //可以使用[]操作符访问双向队列中单个的元素 
+* 3.assign() 设置双向队列的值 
+   语法: 
+    <pre>
+    <code>
+      void assign( input_iterator start, input_iterator end); 
+      //start和end指示的范围为双向队列赋值 
+      void assign( Size num, const TYPE &val );//设置成num个val。 
+    </code>
+    </pre>
+* 4.at() 返回指定的元素 
+   语法: 
+      <pre>
+      <code>
+      reference at( size_type pos ); 返回一个引用，指向双向队列中位置pos上的元素 
+      </code>
+      </pre>
+* 5.back() 返回最后一个元素 
+   语法: 
+     <pre>
+     <code>
+      reference back();//返回一个引用，指向双向队列中最后一个元素 
+     </code>
+     </pre>
+* 6.begin() 返回指向第一个元素的迭代器 
+   语法: 
+     <pre>
+     <code>
+      iterator begin();//返回一个迭代器，指向双向队列的第一个元素 
+     </code>
+     </pre>
+* 7.clear() 删除所有元素 
+* 8.empty() 返回真如果双向队列为空 
+* 9.end() 返回指向尾部的迭代器 
+* 10.erase() 删除一个元素 
+   语法: 
+     <pre>
+     <code>
+      iterator erase( iterator pos ); //删除pos位置上的元素 
+      iterator erase( iterator start, iterator end ); //删除start和end之间的所有元素 
+      //返回指向被删除元素的后一个元素 
+     </code>
+     </pre>
+* 11.front() 返回第一个元素的引用
+* 12.get_allocator() 返回双向队列的配置器 
+* 13.insert() 插入一个元素到双向队列中 
+   语法: 
+    <pre>
+    <code>
+    iterator insert( iterator pos, size_type num, const TYPE &val );
+        //pos前插入num个val值 
+        void insert( iterator pos, input_iterator start, input_iterator end ); 
+        //插入从start到end范围内的元素到pos前面 
+    </code>
+    <pre>
+* 14.max_size() 返回双向队列能容纳的最大元素个数 
+* 15.pop_back() 删除尾部的元素 
+* 16.pop_front() 删除头部的元素 
+* 17.push_back() 在尾部加入一个元素 
+* 18.push_front() 在头部加入一个元素 
+* 19.rbegin() 返回指向尾部的逆向迭代器 
+* 20.rend() 返回指向头部的逆向迭代器 
+* 21.resize() 改变双向队列的大小 
+* 22.size() 返回双向队列中元素的个数 
+* 23.swap() 和另一个双向队列交换元素 
+
+vector
+======
+## 1 基本操作
+* (1)头文件#include< vector>.
+* (2)创建vector对象，vector< int> vec;
+* (3)尾部插入数字：vec.push_back(a);
+* (4)使用下标访问元素，cout<< vec[0]<< endl;记住下标是从0开始的。
+* (5)使用迭代器访问元素.
+<pre>
+<code>
+vector<int>::iterator it;
+for(it=vec.begin();it!=vec.end();it++)
+    cout<<*it<< endl;
+</code>
+</pre>
+* (6)插入元素：    vec.insert(vec.begin()+i,a);在第i+1个元素前面插入a;
+* (7)删除元素：    vec.erase(vec.begin()+2);删除第3个元素
+vec.erase(vec.begin()+i,vec.end()+j);删除区间[i,j-1];区间从0开始
+* (8)向量大小:vec.size();
+* (9)清空:vec.clear();
+# 2 结构体vector
+vector的元素不仅仅可以使int,double,string,还可以是结构体，但是要注意：结构体要定义为全局的，否则会出错。下面是一段简短的程序代码：
+<pre>
+<code>
+#include< stdio.h>
+#include< algorithm>
+#include< vector>
+#include< iostream>
+using namespace std;
+typedef struct rect
+{
+    int id;
+    int length;
+    int width;
+　　//对于向量元素是结构体的，可在结构体内部定义比较函数，下面按照id,length,width升序排序。
+　　bool operator< (const rect &a)  const
+    {
+        if(id!=a.id)
+            return id< a.id;
+        else
+        {
+            if(length!=a.length)
+                return length< a.length;
+            else
+                return width< a.width;
+        }
+    }
+}Rect;
+int main()
+{
+    vector < Rect > vec;
+    Rect rect;
+    rect.id=1;
+    rect.length=2;
+    rect.width=3;
+    vec.push_back(rect);
+    vector< Rect>::iterator it=vec.begin();
+    cout<<(*it).id<<' '<<(*it).length<<' '<<(*it).width<< endl;
+    return 0;
+}
+</code>
+</pre>
+## 3  算法
+* (1) 使用reverse将元素翻转：需要头文件#include<algorithm>
+reverse(vec.begin(),vec.end());将元素翻转(在vector中，如果一个函数中需要两个迭代器，
+一般后一个都不包含.)
+* (2)使用sort排序：需要头文件#include<algorithm>，sort(vec.begin(),vec.end());(默认是按升序排列,即从小到大).可以通过重写排序比较函数按照降序比较，如下：
+<pre>
+<code>
+//定义排序比较函数：
+bool Comp(const int &a,const int &b)
+{
+    return a>b;
+}
+//调用时:sort(vec.begin(),vec.end(),Comp)，这样就降序排序。
+</code>
+</pre>
+
+set
+===
+* 1.元素插入：insert()
+* 2.中序遍历：类似vector遍历（用迭代器）
+* 3.反向遍历：利用反向迭代器reverse_iterator。
+    例：
+   <pre>
+   <code>
+    set< int> s;
+    ......
+    set< int>::reverse_iterator rit;
+    for(rit=s.rbegin();rit!=s.rend();rit++)
+   </code>
+   </pre>
+* 4.元素删除：与插入一样，可以高效的删除，并自动调整使红黑树平衡。
+    <pre>
+    <code>
+        set< int> s;
+        s.erase(2);        //删除键值为2的元素
+        s.clear();
+    </code>
+    </pre>
+* 5.元素检索：find()，若找到，返回该键值迭代器的位置，否则，返回最后一个元素后面一个位置。
+    <pre>
+    <code>
+    set< int> s;
+    set< int>::iterator it;
+    it=s.find(5);    //查找键值为5的元素
+    if(it!=s.end())    //找到
+        cout<<*it<< endl;
+    else            //未找到
+        cout<<"未找到";
+    </code>
+    </pre>
+* 6.自定义比较函数
+        (1)元素不是结构体：
+        例：
+        <pre>
+        <code>
+        //自定义比较函数myComp,重载“（）”操作符
+        struct myComp
+        {
+            bool operator()(const your_type &a,const your_type &b)
+            {
+                return a.data-b.data>0;
+            }
+        }
+        set< int,myComp>s;
+        ......
+        set< int,myComp>::iterator it;
+        </code>
+        </pre>
+        (2)如果元素是结构体，可以直接将比较函数写在结构体内。
+        例：
+        <pre>
+        <code>
+        struct Info
+        {
+            string name;
+            float score;
+            //重载“<”操作符，自定义排序规则
+            bool operator < (const Info &a) const
+            {
+                //按score从大到小排列
+                return a.score< score;
+            }
+        }
+        set< Info> s;
+        ......
+        set< Info>::iterator it; 
+        </code>
+        </pre>
+
+map
+===
+   Map是c++的一个标准容器，她提供了很好一对一的关系，在一些程序中建立一个map可以起到事半功倍的效果，总结了一些map基本简单实用的操作！
+* 1.map最基本的构造函数；
+    <pre>
+    <code>
+        map< string , int >mapstring;         map< int ,string >mapint;
+        map< sring, char>mapstring;         map< char ,string>mapchar;
+        map< char ,int>mapchar;            map< int ,char >mapint；
+    </code>
+    </pre>
+* 2.map添加数据；
+    <pre>
+    <code>
+        map< int ,string> maplive;  
+        maplive.insert(pair< int,string>(102,"aclive"));
+        maplive.insert(map< int,string>::value_type(321,"hai"));
+        maplive[112]="April";//map中最简单最常用的插入添加！
+    </code>
+    </pre>
+* 3.map中元素的查找：
+    find()函数返回一个迭代器指向键值为key的元素，如果没找到就返回指向map尾部的迭代器。   
+    <pre>
+    <code>
+        map< int ,string >::iterator l_it;
+        l_it=maplive.find(112);
+        if(l_it==maplive.end())
+            cout<<"we do not find 112"<< endl;
+        else cout<<"wo find 112"<< endl;
+    </code>
+    </pre>
+
+   
+* 4.map中元素的删除：
+    如果删除112；
+    <pre>
+    <code>
+        map<int ,string >::iterator l_it;;
+        l_it=maplive.find(112);
+        if(l_it==maplive.end())
+            cout<<"we do not find 112"<< endl;
+        else  maplive.erase(l_it);  //delete 112;
+    </code>
+    </pre>
+* 5.map中 swap的用法：
+  Map中的swap不是一个容器中的元素交换，而是两个容器交换；
+  For example：
+    <pre>
+    <code>
+        #include < map>
+        #include < iostream>
+        using namespace std;
+        int main( )
+        {
+        map < int, int> m1, m2, m3;
+        map < int, int>::iterator m1_Iter;
+        m1.insert ( pair < int, int>  ( 1, 10 ) );
+        m1.insert ( pair < int, int>  ( 2, 20 ) );
+        m1.insert ( pair < int, int>  ( 3, 30 ) );
+        m2.insert ( pair < int, int>  ( 10, 100 ) );
+        m2.insert ( pair < int, int>  ( 20, 200 ) );
+        m3.insert ( pair < int, int>  ( 30, 300 ) );
+        cout << "The original map m1 is:";
+        for ( m1_Iter = m1.begin( ); m1_Iter != m1.end( ); m1_Iter++ )
+            cout << " " << m1_Iter->second;
+            cout   << "." << endl;
+        // This is the member function version of swap
+        //m2 is said to be the argument map; m1 the target map
+        m1.swap( m2 );
+        cout << "After swapping with m2, map m1 is:";
+        for ( m1_Iter = m1.begin( ); m1_Iter != m1.end( ); m1_Iter++ )
+            cout << " " << m1_Iter -> second;
+            cout  << "." << endl;
+        cout << "After swapping with m2, map m2 is:";
+        for ( m1_Iter = m2.begin( ); m1_Iter != m2.end( ); m1_Iter++ )
+            cout << " " << m1_Iter -> second;
+            cout  << "." << endl;
+        // This is the specialized template version of swap
+        swap( m1, m3 );
+        cout << "After swapping with m3, map m1 is:";
+        for ( m1_Iter = m1.begin( ); m1_Iter != m1.end( ); m1_Iter++ )
+            cout << " " << m1_Iter -> second;
+            cout   << "." << endl;
+        }
+    </code>
+    </pre>
+* 6.map的sort问题：
+  Map中的元素是自动按key升序排序,所以不能对map用sort函数：
+  For example：
+    <pre>
+    <code>
+        #include < map>
+        #include < iostream>
+        using namespace std;
+        int main( )
+        {
+            map < int, int> m1;
+            map < int, int>::iterator m1_Iter;
+            m1.insert ( pair < int, int>  ( 1, 20 ) );
+            m1.insert ( pair < int, int>  ( 4, 40 ) );
+            m1.insert ( pair < int, int>  ( 3, 60 ) );
+            m1.insert ( pair < int, int>  ( 2, 50 ) );
+            m1.insert ( pair < int, int>  ( 6, 40 ) );
+            m1.insert ( pair < int, int>  ( 7, 30 ) );
+            cout << "The original map m1 is:"<< endl;
+            for ( m1_Iter = m1.begin( ); m1_Iter != m1.end( ); m1_Iter++ )
+                cout << m1_Iter->first<<" "<< m1_Iter->second<< endl;
+        }
+        The original map m1 is:
+        1 20
+        2 50
+        3 60
+        4 40
+        6 40
+        7 30
+        请按任意键继续. . .
+    </code>
+    </pre>
+* 7.map的基本操作函数：
+    <pre>
+    <code>
+        C++ Maps是一种关联式容器，包含“关键字/值”对
+        begin()          返回指向map头部的迭代器
+        clear(）         删除所有元素
+        count()          返回指定元素出现的次数
+        empty()          如果map为空则返回true
+        end()            返回指向map末尾的迭代器
+        equal_range()    返回特殊条目的迭代器对
+        erase()          删除一个元素
+        find()           查找一个元素
+        get_allocator()  返回map的配置器
+        insert()         插入元素
+        key_comp()       返回比较元素key的函数
+        lower_bound()    返回键值>=给定元素的第一个位置
+        max_size()       返回可以容纳的最大元素个数
+        rbegin()         返回一个指向map尾部的逆向迭代器
+        rend()           返回一个指向map头部的逆向迭代器
+        size()           返回map中元素的个数
+        swap()            交换两个map
+        upper_bound()     返回键值>给定元素的第一个位置
+        value_comp()      返回比较元素value的函数
+    </code>
+    </pre>
+## map例程
+<pre>
+<code>
+    // map例题:单词词频统计程序
+    // 输入大量单词,每个单词,一行,不超过20字符,没有空
+    // 格。 按出现次数从多到少输出这些单词及其出现次数。
+    // 出现次数相同的,字典序靠前的在前面
+    // 输入样例:
+    // this
+    // is
+    // ok
+    // this
+    // plus
+    // that
+    // is
+    // plus
+    // plus
+    // 输出样例:
+    // plus 3
+    // is 2例题:单词词频统计程序
+    // 输入大量单词,每个单词,一行,不超过20字符,没有空
+    // 格。 按出现次数从多到少输出这些单词及其出现次数。
+    // 出现次数相同的,字典序靠前的在前面
+    // 输入样例:
+    // this
+    // is
+    // ok
+    // this
+    // plus
+    // that
+    // is
+    // plus
+    // plus
+    // 输出样例:
+    // plus 3
+    // is 2
+    // this 2
+    // ok 1
+    // that 1
+    // this 2
+    // ok 1
+    // that 1
+    #include< iostream>
+    #include< set>
+    #include< map>
+    #include< string>
+    using namespace std;
+    struct Word
+    {
+        int times;
+        string wd;
+    };
+    struct Rule
+    {
+        bool operator () (const Word & w1,const Word & w2)
+        {
+            if(w1.times!=w2.times)
+                return w1.times>w2.times;
+            else
+                return w1.wd< w2.wd;
+        }
+    };
+    int main()
+    {
+        string s;
+        set< Word,Rule>st;
+        map< string,int>mp;
+        while(cin>>s)
+            ++mp[s];
+        for(map< string,int>::iterator i=mp.begin();i!=mp.end();++i)
+        {
+            Word tmp;
+            tmp.wd=i->first;
+            tmp.times=i->second;
+            st.insert(tmp);
+        }
+        for(set< Word,Rule)::iterator i=st.begin();i!=st.end();++i)
+            cout<< i->wd<<" "<< i->times<< endl;
+        return 0;
+    }
+</code>
+</pre>
