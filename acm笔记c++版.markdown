@@ -255,46 +255,46 @@ find_last_not_of()
 
 *   -- long double                    96 +/- 1.79769e+308 %Lf、%Le、%Lg
 
-万能头文件<bits/stdc++.h>
+万能头文件< bits/stdc++.h>
 ========================
-    #include<bits/stdc++.h>这个头文件包含以下等等C++中包含的所有头文件：
-    #include <iostream>
-    #include <cstdio>
-    #include <fstream>
-    #include <algorithm>
-    #include <cmath>
-    #include <deque>
-    #include <vector>
-    #include <queue>
-    #include <string>
-    #include <cstring>
-    #include <map>
-    #include <stack>
-    #include <set>
+    #include< bits/stdc++.h>这个头文件包含以下等等C++中包含的所有头文件：
+    #include < iostream>
+    #include < cstdio>
+    #include < fstream>
+    #include < algorithm>
+    #include < cmath>
+    #include < deque>
+    #include < vector>
+    #include < queue>
+    #include < string>
+    #include < cstring>
+    #include < map>
+    #include < stack>
+    #include < set>
 等等……
 不过在国内oj中，poj，hdu 不支持这个函数，这几个oj的编译器问题，其他国外的oj，还有台湾的oj都支持，CF，Topcoder也都支持。
 
 Pair
 ===========
 *    pair是一种模板类型，其中包含两个数据值，两个数据的类型可以不同，基本的定义如下：
-*    pair<int, string> a;
+*    pair< int, string> a;
 *    表示a中有两个类型，第一个元素是int型的，第二个元素是string类型的，如果创建pair的时候没有对其进行初始化，则调用默认构造函数对其初始化。
-*    pair<string, string> a("James", "Joy");
+*    pair< string, string> a("James", "Joy");
 *    也可以像上面一样在定义的时候直接对其初始化。
 *    由于pair类型的使用比较繁琐，因为如果要定义多个形同的pair类型的时候，可以时候typedef简化声明：
-*    typedef pair<string, string> author;
+*    typedef pair< string, string> author;
 *    author pro("May", "Lily");
 *    author joye("James", "Joyce");
 ##   Pair对象的操作
 *    对于pair类，由于它只有两个元素，分别名为first和second，因此直接使用普通的点操作符即可访问其成员
-*    pair<string, string> a("Lily", "Poly");  
+*    pair< string, string> a("Lily", "Poly");  
 *    string name;
 *    name = pair.second;
 *    生成新的pair对象
 *    可以使用make_pair对已存在的两个数据构造一个新的pair类型：
 *    int a = 8;
 *    string m = "James";
-*    pair<int, string> newone;
+*    pair< int, string> newone;
 *    newone = make_pair(a, m);
 
 sort
@@ -308,7 +308,7 @@ int main()
 {
     int a[]={10,9,8,7,6,5,4,3,2,1};
     cout<< sort(a,a+sizeof(a));//普通排序格式为sort(数组名+要排序的下标，数组名+要结束的下标，排序规则)排序规则为空则是从小到大
-    cout<< sort(a,a+sizeof(a),greater<int>());//倒叙排序
+    cout<< sort(a,a+sizeof(a),greater< int>());//倒叙排序
     //排序规则定制
     sort(数组+n1,数组+n2，排序规则结构名());
     struct 结构名
@@ -356,9 +356,9 @@ qsort 函数执行期间，需要比较两个元素哪个应在前面时，就�
 <pre>
 <code>
 #include "stdafx.h"  
-#include<iostream>  
-#include<string>  
-#include<algorithm>  
+#include< iostream>  
+#include< string>  
+#include< algorithm>  
 using namespace std;  
 struct student  
 {  
@@ -464,7 +464,7 @@ strcpy(pc,c）
 int n = 0;
 std::stringstream ss;
 std::string str;
-ss<<n;
+ss<< n;
 ss>>str;
 </code>
 </pre>
@@ -629,7 +629,7 @@ list
 #include < list>
 int main (void)
 {
- list<char > cList; //声明了list<char>模板类 的一个实例
+ list< char > cList; //声明了list< char>模板类 的一个实例
 }
 </code>
 </pre>
@@ -747,7 +747,7 @@ cList.pop_back(); //删除最后一个元素
 cList. Erase(cList.begin()); //使用iterator删除第一个元素；
 cList. Erase(cList.begin(), cList.End()); //使用iterator删除所有元素；
 cList.remove(‘c’); //使用remove函数删除指定的对象；
-list<char>::iterator newEnd;
+list< char>::iterator newEnd;
 //删除所有的’c’ ,并返回指向新的list的结尾的iterator
 newEnd = cList.remove(cList.begin(), cList.end(), ‘c’);
 </code>
@@ -846,7 +846,7 @@ vector
 * (5)使用迭代器访问元素.
 <pre>
 <code>
-vector<int>::iterator it;
+vector< int>::iterator it;
 for(it=vec.begin();it!=vec.end();it++)
     cout<<*it<< endl;
 </code>
@@ -899,10 +899,10 @@ int main()
 </code>
 </pre>
 ### 3  算法
-* (1) 使用reverse将元素翻转：需要头文件#include<algorithm>
+* (1) 使用reverse将元素翻转：需要头文件#include< algorithm>
 reverse(vec.begin(),vec.end());将元素翻转(在vector中，如果一个函数中需要两个迭代器，
 一般后一个都不包含.)
-* (2)使用sort排序：需要头文件#include<algorithm>，sort(vec.begin(),vec.end());(默认是按升序排列,即从小到大).可以通过重写排序比较函数按照降序比较，如下：
+* (2)使用sort排序：需要头文件#include< algorithm>，sort(vec.begin(),vec.end());(默认是按升序排列,即从小到大).可以通过重写排序比较函数按照降序比较，如下：
 <pre>
 <code>
 //定义排序比较函数：
@@ -1024,7 +1024,7 @@ map
     如果删除112；
     <pre>
     <code>
-        map<int ,string >::iterator l_it;;
+        map< int ,string >::iterator l_it;;
         l_it=maplive.find(112);
         if(l_it==maplive.end())
             cout<<"we do not find 112"<< endl;
@@ -1240,8 +1240,8 @@ queue 模板类的定义在<queue>头文件中。
 定义queue 对象的示例代码如下：
 <pre>
 <code>
-queue<int> q1;
-queue<double> q2;
+queue< int> q1;
+queue< double> q2;
 </code>
 </pre>
 queue 的基本操作有：
@@ -1263,9 +1263,9 @@ priority_queue 模板类有三个模板参数，第一个是元素类型，第�
 定义priority_queue 对象的示例代码如下：
 <pre>
 <code>
-priority_queue<int> q1;
-priority_queue< pair<int, int> > q2; // 注意在两个尖括号之间一定要留空格。
-priority_queue<int, vector<int>, greater<int> > q3; // 定义小的先出队
+priority_queue< int> q1;
+priority_queue< pair< int, int> > q2; // 注意在两个尖括号之间一定要留空格。
+priority_queue< int, vector< int>, greater< int> > q3; // 定义小的先出队
 </code>
 </pre>
 priority_queue 的基本操作与queue 相同。
@@ -1277,8 +1277,8 @@ priority_queue 的基本操作与queue 相同。
 看下面这个简单的示例：
 <pre>
 <code>
-#include <iostream>
-#include <queue>
+#include < iostream>
+#include < queue>
 using namespace std;
 class T
 {
@@ -1294,7 +1294,7 @@ class T
 }
 main()
 {
-    priority_queue<T> q;
+    priority_queue< T> q;
     q.push(T(4,4,3));
     q.push(T(2,2,5));
     q.push(T(1,5,4));
@@ -1316,8 +1316,8 @@ main()
 再看一个按照z 的顺序从小到大出队的例子：
 <pre>
 <code>
-#include <iostream>
-#include <queue>
+#include < iostream>
+#include < queue>
 using namespace std;
 class T
 {
