@@ -22,17 +22,8 @@ typedef struct rect
 
 int main()
 {
-    vector<Rect> vec;
-    Rect rect;
-    rect.id=1;
-    rect.length=2;
-    rect.width=3;
-    vec.push_back(rect);
-    vector<Rect>::iterator it=vec.begin();
-    it++;
-    cout<<(*it).id<<' '<<(*it).length<<' '<<(*it).width<<endl;    
+    int x = 'a' - 'A';
+    cout <<x << endl;
     system("pause");
-return 0;
-
-
+    return 0;
 }
