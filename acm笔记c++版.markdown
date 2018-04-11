@@ -1362,3 +1362,58 @@ return t1.z > t2.z; // 按照z 的顺序来决定t1 和t2 的顺序
 </code>
 </pre>
 则第一个例子的程序会得到和第二个例子的程序相同的输出结果。
+
+STL 全排列函数
+=============
+## 1.头文件
+<pre>
+<code>
+#include < algorithm>
+</code>
+</pre>
+## 2.使用方法
+这里先说两个概念：“下一个排列组合”和“上一个排列组合”，对序列 {a, b, c}，每一个元素都比后面的小，按照字典序列，固定a之后，a比bc都小，c比b大，它的下一个序列即为{a, c, b}，而{a, c, b}的上一个序列即为{a, b, c}，同理可以推出所有的六个序列为：{a, b, c}、{a, c, b}、{b, a, c}、{b, c, a}、{c, a, b}、{c, b, a}，其中{a, b, c}没有上一个元素，{c, b, a}没有下一个元素。
+### 1）next_permutation：求下一个排列组合　
+* a.函数模板：next_permutation(arr, arr+size);
+* b.参数说明：
+　　arr： 数组名
+　　size：数组元素个数
+* c.函数功能： 返回值为bool类型，当当前序列不存在下一个排列时，函数返回false，否则返回true，排列好的数在数组中存储
+* d.注意：在使用前需要对欲排列数组按升序排序，否则只能找出该序列之后的全排列数。
+　　　　比如，如果数组num初始化为2,3,1，那么输出就变为了：{2 3 1} {3 1 2} {3 2 1}
+### 2）prev_permutation：求上一个排列组合
+* a.函数模板：prev_permutation(arr, arr+size);
+* b.参数说明：
+　　arr： 数组名
+　　size：数组元素个数
+* c.函数功能： 返回值为bool类型，当当前序列不存在上一个排列时，函数返回false，否则返回true
+* d.注意：在使用前需要对欲排列数组按降序排序，否则只能找出该序列之后的全排列数。
+## 3.代码
+<pre>
+<code>
+#include < iostream>
+#include < algorithm>
+using namespace std;
+int main ()
+{
+    int arr[] = {3,2,1};
+    cout<<"用prev_permutation对3 2 1的全排列"<< endl;
+    do
+    {
+        cout << arr[0] << ' ' << arr[1] << ' ' << arr[2]<<'\n';
+    }
+    while ( prev_permutation(arr,arr+3) );      ///获取上一个较大字典序排列，如果3改为2，只对前两个数全排列
+
+    int arr1[] = {1,2,3};
+    cout<<"用next_permutation对1 2 3的全排列"<< endl;
+    do
+    {
+        cout << arr1[0] << ' ' << arr1[1] << ' ' << arr1[2] <<'\n';
+    }
+    while ( next_permutation(arr1,arr1+3) );      ///获取下一个较大字典序排列，如果3改为2，只对前两个数全排列
+    ///注意数组顺序，必要时要对数组先进行排序
+
+    return 0;
+}
+</code>
+</pre>
