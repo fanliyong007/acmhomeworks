@@ -1,10 +1,7 @@
     // 模板：建议计算时把较大的数放在左边对较小的数做运算，比如“999+1”而不是"1+999"，
     // 因为我的模板针对该类型进行了很大的效率优化。另外模板可能因为更新的缘故，
     // 跟后面的解说会有细微出入。
-#include <iostream>  
-#include <string>  
-#include <cstring>  
-#include <cstdio>  
+#include<bits/stdc++.h>
 using namespace std;    
 const int maxn = 1000;     
 struct bign{  
