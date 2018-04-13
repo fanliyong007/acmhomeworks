@@ -194,8 +194,12 @@ getline(stuff,':'); //read up to :,discard :
 <pre>
 <code>
 find()
-//size_type find(const string & str,size_type pos=0)const 从字符串的pos位置开始，查找子字符串str。如果找到，则返回该子字符串首次出现时其首字符的所以；否则，返回string::npos
-//size_type find(const char* str,size_type pos=0)const 从字符串的pos位置开始，查找子字符串s。如果找到，则返回该子字符串首次出现时其首字符的所以；否则，返回string::npos
+//size_type find(const string & str,size_type pos=0)const
+ 从字符串的pos位置开始，查找子字符串str。如果找到，则返回该子字
+ 符串首次出现时其首字符的所以；否则，返回string::npos
+//size_type find(const char* str,size_type pos=0)const 从字
+符串的pos位置开始，查找子字符串s。如果找到，则返回该子字符串首次
+出现时其首字符的所以；否则，返回string::npos
 rfind()
 find_first_of()
 find_last_of()
@@ -307,7 +311,8 @@ using namespace std;
 int main()
 {
     int a[]={10,9,8,7,6,5,4,3,2,1};
-    cout<< sort(a,a+sizeof(a));//普通排序格式为sort(数组名+要排序的下标，数组名+要结束的下标，排序规则)排序规则为空则是从小到大
+    cout<< sort(a,a+sizeof(a));//普通排序格式为sort(数组名+要排序的下标，数组名+要结束的下
+    标，排序规则)排序规则为空则是从小到大
     cout<< sort(a,a+sizeof(a),greater< int>());//倒叙排序
     //排序规则定制
     sort(数组+n1,数组+n2，排序规则结构名());
@@ -487,23 +492,39 @@ long atol(const char * str);//char2long
 long int strtol (const char* str, char** endptr, int base);
 /*
 【参数说明】str 为要转换的字符串，endstr 为第一个不能转换的字符的指针，base 为字符串 str 所采用的进制。
-【函数说明】strtol() 会将参数 str 字符串根据参数 base 来转换成长整型数(long)。参数 base 范围从2 至36，或0。参数base 代表 str 采用的进制方式，如base 值为10 则采用10 进制，若base 值为16 则采用16 进制等。strtol() 会扫描参数 str 字符串，跳过前面的空白字符（例如空格，tab缩进等，可以通过 isspace() 函数来检测），直到遇上数字或正负符号才开始做转换，再遇到非数字或字符串结束时('\0')结束转换，并将结果返回。
+【函数说明】strtol() 会将参数 str 字符串根据参数 base 来转换成长整型数(long)。参数 base 范围从2 至36，或0。
+参数base 代表 str 采用的进制方式，如base 值为10 则采用10 进制，若base 值为16 则采用16 进制等。
+strtol() 会扫描参数 str 字符串，跳过前面的空白字符（例如空格，tab缩进等，可以通过 isspace() 函
+数来检测），直到遇上数字或正负符号才开始做转换，再遇到非数字或字符串结束时('\0')结束转换，并将结
+果返回。
 两点注意： 
-当 base 的值为 0 时，默认采用 10 进制转换，但如果遇到 '0x' / '0X' 前置字符则会使用 16 进制转换，遇到 '0' 前置字符则会使用 8 进制转换。
-若endptr 不为NULL，则会将遇到的不符合条件而终止的字符指针由 endptr 传回；若 endptr 为 NULL，则表示该参数无效，或不使用该参数。
-【返回值】返回转换后的长整型数；如果不能转换或者 str 为空字符串，那么返回 0(0L)；如果转换得到的值超出 long int 所能表示的范围，函数将返回 LONG_MAX 或 LONG_MIN（在 limits.h 头文件中定义），并将 errno 的值设置为 ERANGE。*/
+当 base 的值为 0 时，默认采用 10 进制转换，但如果遇到 '0x' / '0X' 前置字符则会使用 16 进制转
+换，遇到 '0' 前置字符则会使用 8 进制转换。
+若endptr 不为NULL，则会将遇到的不符合条件而终止的字符指针由 endptr 传回；若 endptr 为 NULL，则
+表示该参数无效，或不使用该参数。
+【返回值】返回转换后的长整型数；如果不能转换或者 str 为空字符串，那么返回 0(0L)；如果转换得到的
+值超出 long int 所能表示的范围，函数将返回 LONG_MAX 或 LONG_MIN（在 limits.h 头文件中定义），
+并将 errno 的值设置为 ERANGE。*/
 
 unsigned long strtoul (const char* str, char** endptr, int base);
 
-double strtod (const char* str, char** endptr);//函数 strtod() 用来将字符串转换成双精度浮点数
-/*strtod() 函数会扫描参数str字符串，跳过前面的空白字符（例如空格，tab缩进等，可以通过 isspace() 函数来检测），直到遇上数字或正负符号才开始做转换，到出现非数字或字符串结束时('\0')才结束转换，并将结果返回。参数 str 字符串可包含正负号、小数点或E(e)来表示指数部分。如123. 456 或123e-2。若endptr 不为NULL，则会将遇到的不符合条件而终止的字符指针由 endptr 传回；若 endptr 为 NULL，则表示该参数无效，或不使用该参数。返回转换后的浮点型数；若不能转换或字符串为空，则返回 0.0。*/
+double strtod (const char* str, char** endptr);//函数 strtod() 用来将字符串转换成双精度浮点
+数
+/*strtod() 函数会扫描参数str字符串，跳过前面的空白字符（例如空格，tab缩进等，可以通过 isspace()
+ 函数来检测），直到遇上数字或正负符号才开始做转换，到出现非数字或字符串结束时('\0')才结束转换，并
+ 将结果返回。参数 str 字符串可包含正负号、小数点或E(e)来表示指数部分。如123. 456 或123e-2。若
+ endptr 不为NULL，则会将遇到的不符合条件而终止的字符指针由 endptr 传回；若 endptr 为 NULL，则
+ 表示该参数无效，或不使用该参数。返回转换后的浮点型数；若不能转换或字符串为空，则返回 0.0。*/
 
 double atof (const char* str);//char2double
-/*它会扫描参数str字符串，跳过前面的空白字符（例如空格，tab缩进等，可以通过 isspace() 函数来检测），直到遇上数字或正负符号才开始做转换，而再遇到非数字或字符串结束时('\0')才结束转换，并将结果返回。参数str 字符串可包含正负号、小数点或E(e)来表示指数部分，如123. 456 或123e-2。
+/*它会扫描参数str字符串，跳过前面的空白字符（例如空格，tab缩进等，可以通过 isspace() 函数来检
+测），直到遇上数字或正负符号才开始做转换，而再遇到非数字或字符串结束时('\0')才结束转换，并将结果
+返回。参数str 字符串可包含正负号、小数点或E(e)来表示指数部分，如123. 456 或123e-2。
 返回转换后的浮点数；如果字符串 str 不能被转换为 double，那么返回 0.0。*/
 
 char*itoa(int value,char*string,int radix);
-/*int value 被转换的整数，char *string 转换后储存的字符数组，int radix 转换进制数，如2,8,10,16 进制等*/
+/*int value 被转换的整数，char *string 转换后储存的字符数组，int radix 转换进制数，如2,8,10,
+16 进制等*/
 </code>
 </pre>
 ## math.h
@@ -594,7 +615,8 @@ e的次幂函数(以e为底的x次方值)
 
 list
 ====
- List将元素按顺序储存在链表中. 与 向量(vector)相比, 它允许快速的插入和删除，但是随机访问却比较慢。
+ List将元素按顺序储存在链表中. 与 向量(vector)相比, 它允许快速的插入和删除，但是随机访问却比较
+ 慢。
 * assign() 给list赋值 
 * back() 返回最后一个元素 
 * begin() 返回指向第一个元素的迭代器 
@@ -657,7 +679,9 @@ for(cIterator = cList.Begin();cIterator != cList.end();cIterator++)
 {
  printf(“%c”, *cIterator);
 } //输出list中的所有对象
-说明：cList.Begin()和cList.end()函数返回指向list< char >::iterator的指针，由于list采用链表结构，因此它不支持随机存取，因此不能用cList.begin()+3来指向list中的第四个对象，vector和deque支持随机存取。
+说明：cList.Begin()和cList.end()函数返回指向list< char >::iterator的指针，由于list采用链表结
+构，因此它不支持随机存取，因此不能用cList.begin()+3来指向list中的第四个对象，vector和deque支持
+随机存取。
 </code>
 </pre>
 * 5）、用STL的通用算法count()来统计list中的元素个数 
@@ -684,7 +708,9 @@ public:
 
 int numC;
 numC = count_if (cList.begin(), cList.end(),IsC());//统计c的数量；
-说明：count_if() 带一个函数对象的参数,函数对象是一个至少带有一个operator()方法的类函数对象被约定为STL算法调用operator时返回true或false。它们根据这个来判定这个函数。举个例子会 说的更清楚些。count_if()通过传递一个函数对象来作出比count()更加复杂的评估以确定一个对象是否应该被记数。
+说明：count_if() 带一个函数对象的参数,函数对象是一个至少带有一个operator()方法的类函数对象被约
+定为STL算法调用operator时返回true或false。它们根据这个来判定这个函数。举个例子会 说的更清楚些。
+count_if()通过传递一个函数对象来作出比count()更加复杂的评估以确定一个对象是否应该被记数。
 
 </code>
 </pre>
@@ -738,7 +764,8 @@ char ch[3] ={‘a’, ‘b’, ‘c’};
 cList.insert(cList.end, &ch[0], & ch[3] ); //插入三个字符到list中
 </code>
 </pre>
-说明：insert()函数把一个或多个元素插入到指出的iterator位置。元素将出现在 iterator指出的位置以前。
+说明：insert()函数把一个或多个元素插入到指出的iterator位置。元素将出现在 iterator指出的位置以
+前。
 * 11)、如何在list中删除元素 
 <pre>
 <code>
@@ -755,7 +782,10 @@ newEnd = cList.remove(cList.begin(), cList.end(), ‘c’);
 
 deque(双向队列) 
 ==============
-deque是一种优化了的、对序列两端元素进行添加和删除操作的基本序列容器。它允许较为快速地随机访问，但它不像vector 把所有的对象保存在一块连续的内存块，而是采用多个连续的存储块，并且在一个映射结构中保存对这些块及其顺序的跟踪。向deque 两端添加或删除元素的开销很小。它不需要重新分配空间，所以向末端增加元素比vector 更有效。 
+deque是一种优化了的、对序列两端元素进行添加和删除操作的基本序列容器。它允许较为快速地随机访问，但
+它不像vector 把所有的对象保存在一块连续的内存块，而是采用多个连续的存储块，并且在一个映射结构中保
+存对这些块及其顺序的跟踪。向deque 两端添加或删除元素的开销很小。它不需要重新分配空间，所以向末端
+增加元素比vector 更有效。 
 
 * 1.Constructors 创建一个新双向队列 
    语法: 
@@ -857,7 +887,8 @@ vec.erase(vec.begin()+i,vec.end()+j);删除区间[i,j-1];区间从0开始
 * (8)向量大小:vec.size();
 * (9)清空:vec.clear();
 ### 2 结构体vector
-vector的元素不仅仅可以使int,double,string,还可以是结构体，但是要注意：结构体要定义为全局的，否则会出错。下面是一段简短的程序代码：
+vector的元素不仅仅可以使int,double,string,还可以是结构体，但是要注意：结构体要定义为全局的，否
+则会出错。下面是一段简短的程序代码：
 <pre>
 <code>
 #include< stdio.h>
@@ -902,7 +933,8 @@ int main()
 * (1) 使用reverse将元素翻转：需要头文件#include< algorithm>
 reverse(vec.begin(),vec.end());将元素翻转(在vector中，如果一个函数中需要两个迭代器，
 一般后一个都不包含.)
-* (2)使用sort排序：需要头文件#include< algorithm>，sort(vec.begin(),vec.end());(默认是按升序排列,即从小到大).可以通过重写排序比较函数按照降序比较，如下：
+* (2)使用sort排序：需要头文件#include< algorithm>，sort(vec.begin(),vec.end());(默认是按升序
+排列,即从小到大).可以通过重写排序比较函数按照降序比较，如下：
 <pre>
 <code>
 //定义排序比较函数：
@@ -989,7 +1021,8 @@ set
 
 map
 ===
-   Map是c++的一个标准容器，她提供了很好一对一的关系，在一些程序中建立一个map可以起到事半功倍的效果，总结了一些map基本简单实用的操作！
+   Map是c++的一个标准容器，她提供了很好一对一的关系，在一些程序中建立一个map可以起到事半功倍的效
+   果，总结了一些map基本简单实用的操作！
 * 1.map最基本的构造函数；
     <pre>
     <code>
@@ -1273,7 +1306,8 @@ priority_queue 的基本操作与queue 相同。
 如果是基本数据类型，或已定义了比较运算符的类，可以直接用STL 的less 算子和greater
 算子——默认为使用less 算子，即小的往前排，大的先出队。
 如果要定义自己的比较算子，方法有多种，这里介绍其中的一种：重载比较运算符。优先队
-列试图将两个元素x 和y 代入比较运算符(对less 算子，调用x< y，对greater 算子，调用x>y)，若结果为真，则x 排在y 前面，y 将先于x 出队，反之，则将y 排在x 前面，x 将先出队。
+列试图将两个元素x 和y 代入比较运算符(对less 算子，调用x< y，对greater 算子，调用x>y)，若结果为
+真，则x 排在y 前面，y 将先于x 出队，反之，则将y 排在x 前面，x 将先出队。
 看下面这个简单的示例：
 <pre>
 <code>
@@ -1378,7 +1412,8 @@ STL 全排列函数
 * b.参数说明：
 　　arr： 数组名
 　　size：数组元素个数
-* c.函数功能： 返回值为bool类型，当当前序列不存在下一个排列时，函数返回false，否则返回true，排列好的数在数组中存储
+* c.函数功能： 返回值为bool类型，当当前序列不存在下一个排列时，函数返回false，否则返回true，排列
+好的数在数组中存储
 * d.注意：在使用前需要对欲排列数组按升序排序，否则只能找出该序列之后的全排列数。
 　　　　比如，如果数组num初始化为2,3,1，那么输出就变为了：{2 3 1} {3 1 2} {3 2 1}
 ### 2）prev_permutation：求上一个排列组合
@@ -1402,7 +1437,8 @@ int main ()
     {
         cout << arr[0] << ' ' << arr[1] << ' ' << arr[2]<<'\n';
     }
-    while ( prev_permutation(arr,arr+3) );      ///获取上一个较大字典序排列，如果3改为2，只对前两个数全排列
+    while ( prev_permutation(arr,arr+3) );      ///获取上一个较大字典序排列，如果3改为2，只
+    对前两个数全排列
 
     int arr1[] = {1,2,3};
     cout<<"用next_permutation对1 2 3的全排列"<< endl;
@@ -1410,7 +1446,8 @@ int main ()
     {
         cout << arr1[0] << ' ' << arr1[1] << ' ' << arr1[2] <<'\n';
     }
-    while ( next_permutation(arr1,arr1+3) );      ///获取下一个较大字典序排列，如果3改为2，只对前两个数全排列
+    while ( next_permutation(arr1,arr1+3) );      ///获取下一个较大字典序排列，如果3改为2，
+    只对前两个数全排列
     ///注意数组顺序，必要时要对数组先进行排序
 
     return 0;
@@ -1422,8 +1459,10 @@ int main ()
 =======
 <pre>
 <code>
-binary_search(数组名+n1,数组名+n2,值)//查找区间[n1,n2)内的值返回值为true（找到），false（没找到）
-binary_search(数组名+n1,数组名+n2,值,排序规则结构名（）)//在使用自定义排序规则内的数组里二分查找
+binary_search(数组名+n1,数组名+n2,值)//查找区间[n1,n2)内的值返回值为true（找到），false（没找
+到）
+binary_search(数组名+n1,数组名+n2,值,排序规则结构名（）)//在使用自定义排序规则内的数组里二分查
+找
 //在二分查找中等于的含义是“a必须在b前面“和”b必须在a前面“都不成立
 //例子
 #include< iostream>
@@ -1472,7 +1511,8 @@ T * lower_bound(数组名+n1,数组名+n2,值);
 //用lower_bound二分查找下界（二）在元素为任意的T类型，按照自定义排序规则排好序的数组中进行查找
 T * lower_bound(数组名+n1,数组名+n2,值，排序规则结构名);
 返回一个指针T*p；
-*p是查找区间里下标最小的，按自定义排序规则，可以排在“值”后面的元素。如果找不到，p指向下标为n2的元素
+*p是查找区间里下标最小的，按自定义排序规则，可以排在“值”后面的元素。如果找不到，p指向下标为n2的元
+素
 //用upper_bound二分查找上界（一）
 在元素为任意的T类型从小到大排好序的数组中进行查找
 T * upper_bound(数组名+n1,数组名+n2,值);
@@ -1481,7 +1521,8 @@ T * upper_bound(数组名+n1,数组名+n2,值);
 //用upper_bound二分查找下界（二）在元素为任意的T类型，按照自定义排序规则排好序的数组中进行查找
 T * upper_bound(数组名+n1,数组名+n2,值，排序规则结构名);
 返回一个指针T*p；
-*p是查找区间里下标最小的，按自定义排序规则，必须排在“值”后面的元素。如果找不到，p指向下标为n2的元素
+*p是查找区间里下标最小的，按自定义排序规则，必须排在“值”后面的元素。如果找不到，p指向下标为n2的元
+素
 //例子
 #include< iostream>
 #include< cstring>
