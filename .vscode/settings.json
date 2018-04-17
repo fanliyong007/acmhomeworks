@@ -20,7 +20,8 @@
         "type_traits": "cpp",
         "typeinfo": "cpp",
         "iostream": "cpp",
-        "limits": "cpp"
+        "limits": "cpp",
+        "iosfwd": "cpp"
     },
     "git.ignoreLimitWarning": true,
     "files.autoSave": "onFocusChange",

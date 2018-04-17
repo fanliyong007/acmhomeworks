@@ -1,14 +1,34 @@
 #include<bits/stdc++.h>
-char word[1008];
+inline int fun(int a)
+{
+    int sum = 1;
+    for(int j=2;j<=sqrt(a);j++)
+    {
+        if(a%j==0)
+        {
+            sum+=j;
+            if(a/j!=j)sum+=a/j;
+        }
+    }
+    return sum;
+}
 int main()
 {
-    int n;
-    scanf("%d", &n);
-    gets(word);
-    while(n--)
+    int n = 0;
+    while(scanf("%d", &n)!=EOF)
     {
-        gets(word);
-        puts(word);
+        for(int i=0;i<n;i++)
+        {
+            int a=0;
+            scanf("%d", &a);
+            if(a!=1)
+            {
+                int sum=fun(a);
+                printf("%d\n", sum);
+            }
+            else printf("0\n");	
+        }
     }
     return 0;
 }
+
