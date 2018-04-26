@@ -1588,5 +1588,74 @@ int main()
 </code>
 </pre>
 
-Iterator
-========
+Find
+====
+
+## vector
+<pre>
+<code>
+#include < iostream>
+#include < algorithm>
+#include < vector>
+using namespace std;
+
+int main()
+{
+    vector< string> m;
+    m.push_back("hello");
+    m.push_back("hello2");
+    m.push_back("hello3");
+    if (find(m.begin(), m.end(), "hello") == m.end())
+        cout << "no" << endl;
+    else
+        cout << "yes" << endl;
+}
+</code>
+</pre>
+
+## set
+<pre>
+<code>
+#include < iostream>
+#include < algorithm>
+#include < string>
+#include < set>
+using namespace std;
+
+int main()
+{
+    set< string> m;
+    m.insert("hello");
+    m.insert("hello2");
+    m.insert("hello3");
+    if (find(m.begin(), m.end(), "hello") == m.end())
+        cout << "no" << endl;
+    else
+        cout << "yes" << endl;
+}
+</code>
+</pre>
+
+## string
+<pre>
+<code>
+#include < iostream>
+#include < algorithm>
+#include < string>
+using namespace std;
+
+int main()
+{
+    string s = "helllo";
+    if (s.find("e") == string::npos)  //yes
+        cout << "no" << endl;
+    else
+        cout << "yes" << endl;
+
+    if (s.find("z") == string::npos)  //no
+        cout << "no" << endl;
+    else
+        cout << "yes" << endl;
+}
+</code>
+</pre>
