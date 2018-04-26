@@ -21,7 +21,13 @@
         "typeinfo": "cpp",
         "iostream": "cpp",
         "limits": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "cstddef": "cpp",
+        "cstring": "cpp",
+        "iomanip": "cpp",
+        "istream": "cpp",
+        "memory": "cpp",
+        "streambuf": "cpp"
     },
     "git.ignoreLimitWarning": true,
     "files.autoSave": "onFocusChange",

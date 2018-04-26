@@ -27,7 +27,26 @@ string Str;
 * b) swap()   //交换两个字符串的内容
 * c) +=,append(),push_back() //在尾部添加字符
 * d) insert() //插入字符
+<pre>
+<code>
+string & insert(int p0, const char *s);——在p0位置插入字符串s
+string & insert(int p0, const char *s, int n);——在p0位置插入字符串s的前n个字符
+string & insert(int p0,const string &s);——在p0位置插入字符串s
+string & insert(int p0,const string &s, int pos, int n);——在p0位置插入字符串s从pos开始的连续n个字符
+string & insert(int p0, int n, char c);//在p0处插入n个字符c
+iterator insert(iterator it, char c);//在it处插入字符c，返回插入后迭代器的位置
+void insert(iterator it, const_iterator first, const_iteratorlast);//在it处插入从first开始至last-1的所有字符
+void insert(iterator it, int n, char c);//在it处插入n个字符c
+</code>
+</pre>
 * e) erase() //删除字符
+<pre>
+<code>
+string& erase ( size_t pos = 0, size_t n = npos );删除从pos开始的n个字符，比如erase(0,1)就是删除第一个字符
+iterator erase ( iterator position );删除position处的一个字符(position是个string类型的迭代器)
+iterator erase ( iterator first, iterator last );删除从first到last之间的字符（first和last都是迭代器）
+</code>
+</pre>
 * f) clear() //删除全部字符
 * g) replace() //替换字符
 * h) + //串联字符串
@@ -1568,3 +1587,6 @@ int main()
 
 </code>
 </pre>
+
+Iterator
+========
