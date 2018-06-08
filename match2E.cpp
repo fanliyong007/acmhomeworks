@@ -53,7 +53,7 @@ int main()
             break;
         for (int i = 2; i < 1000000;i++)
         {
-            if(isprime[i]&&isprime[g-i])
+            if(isprime[i]&&isprime[g/i])
             {
                 cout << g << " = " << i << " + " << g - i << endl;
                 break;
