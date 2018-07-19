@@ -250,7 +250,7 @@ void HuffmanCoding2(HuffmanTree HT,HuffmanCode &HC,int n)
     }  
     free(code);  
 }  
-void translateC2N()
+void translateC2N()//明文转编码
 {
     cout << "please write the huffcode " << endl;
     string word;
@@ -281,7 +281,7 @@ void translateC2N()
     }
     cout << endl;
 }
-void translateN2C()
+void translateN2C()//编码转明文
 {
     string word;
     string rubblish;
@@ -294,7 +294,6 @@ void translateN2C()
     }
     cout << endl;
 }
-
 int main()
 {
     int cmd;
@@ -337,7 +336,7 @@ int main()
                 for (int i = 0; i < n;i++)
                 {
                     string tmp(HC[i]);
-                    tmp[0] = tmp[0] == '0' ? '1' : '0';
+                    tmp[0] = tmp[0] == '0' ? '1' : '0';//交换两子叶
                     cout << ch[i] << "----"<<tmp<< endl;
                     codef[ch[i]] = tmp;
                     codes[tmp] = ch[i];
