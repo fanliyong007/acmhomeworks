@@ -206,6 +206,23 @@ getline(cin,stuff) //read a line,discard \n
 getline(stuff,':'); //read up to :,discard :
 </code>
 </pre>
+读取一整行c语言的方法：
+第一种方法是使用“ fgetc( fin)”，它读取一个打开的文件 fin，读取一个字符，然后返回一个int 值。为什么
+返回的是int而不是char呢？因为如果文件结束，fgetc将返回一个特殊标记EOF，它并不是一个char。如果把 
+fgetc( fin)的返回值强制转换为 char，将无法把特殊的EOF和普通字符区分开。如果要从标准输入读取一个字符
+可以用getchar，它等价于fgetc( stdin)。
+提示 3- 14：使用 fgetc( fin) 可以 从 打开 的 文件 fin 中 读取 一个 字符。 一般 情况下 应当 在 检查 它不 是 EOF 后
+再将其转换成char值。
+第二种方法是使用“ fgets( buf, maxn, fin)” 读取完整的一行，其中 buf 的 声明为 char buf[ maxn]。这个函数读取不超过
+maxn- 1个字符，然后在末尾添上结束符“\ 0”，因此不会出现越界的情况。之所以说可以用这个函数读取完整的一行，是因为一旦读到 
+回车符“\ n”，读取工作将会停止，而这个“\ n” 也会是 buf 字符串中最后一个有效字符（ 再 往后 就是 字符串 结束 符“\ 0” 了）
+只有在一种 情况下， buf 不会 以“\ n” 结尾： 读到 文件 结束 符， 并且 文件 的 最后 一个 不 是以“\ n” 结尾。 尽管 比赛
+ 的 组织 方 应 避免 这样 的 情况（ 和 输出 文件 一样， 保证 输入 文件 的 每 行 均以 回车 符 结尾）， 但 正如 刚才 所
+ 说， 选手 应该 把 自己的 程序 写得 更 鲁 棒。
+  提示 3- 16：" fgets( buf, maxn, fin)" 将 读取 完整 的 一行 放在 字符 数组 buf 中。 应当 保证 buf 足够 存放 下 
+  文件 的 一行 内容。 除了 在 文件 结束 前 没有 遇到“\ n” 这种 特殊 情况 外， buf 总是 以“\ n” 结尾。 当 一个 字符 都
+  没 有 读到 时， fgets 返回 NULL。
+ 
 
 
 ### 2．8搜索与查找
@@ -1659,3 +1676,68 @@ int main()
 }
 </code>
 </pre>
+
+读写文件DEMO
+============
+
+重定向 的 部分 被 写在 了# ifdef 和# endif 中。 其 含义 是： 只有 定义 了 符号 LOCAL， 才 编译 两条 freopen 语句。
+<pre>
+<code>
+#define LOCAL 
+#include< stdio. h> 
+#define INF 1000000000 
+int main() 
+{ 
+    #ifdef 
+    LOCAL freopen(" data. in", "r", stdin); 
+    freopen(" data. out", "w", stdout);
+    #endif 
+    int x, n = 0, min = INF, max = -INF, s = 0;
+    while( scanf("% d", &x) == 1) 
+    {
+        s += x;
+        if( x < min) min = x;
+        if( x > max) max = x; 
+        /*
+         printf(" x = %d, min = %d, max = %d\ n", x, min, max);
+         */ 
+        n++; 
+    } 
+    printf("% d %d %.3f\ n", min, max, (double) s/ n); 
+    return 0;
+}
+</code>
+</pre>
+先声明变量fin和fout(暂且不用考虑 FILE*）,
+把 scanf 改成 fscanf,第一个 参数 为 fin；把 
+printf 改成 
+fprintf， 第一个 参数 为 fout,最后 执行 fclose， 关闭 两个 文件。 提示 2- 24：在算法竞赛中,
+如果不 允许 使用 重定向 方式 读写 数据， 应 使用 fopen 和 fscanf/ fprintf 进行 输入 输出。 重定向 和 fopen 两种 方法 各有 优劣。 
+重定向 的 方法 写 起来 简单、 自然， 但是 不能 
+同时 读写 文件 和 标准 输入 输出； fopen 的 写法
+ 稍 显 繁琐， 但是 灵活性 比较 大（ 例如， 可以 反复 打开 并 读写 文件）。 
+ 顺便 说 一句， 如果 想把 fopen 版 的 程序 改成 读写 标准 输入 输出， 
+ 只需 赋值“ fin ＝ stdin； fout ＝ stdout；” 即可， 不要 调用 fopen 和 fclose
+<pre>
+<code>
+#include< stdio. h>
+#define INF 1000000000 
+int main()
+{ 
+    FILE *fin, *fout; 
+    fin = fopen(" data. in", "rb"); 
+    fout = fopen(" data. out", "wb"); 
+    int x, n = 0, min = INF, max = -INF, s = 0; 
+    while( fscanf( fin, "%d", &x) == 1)
+    { 
+        s += x; if( x < min) min = x;
+        if( x > max) max = x; 
+        n++; 
+    } 
+    fprintf( fout, "%d %d %.3f\ n", min, max, (double) s/ n); 
+    fclose( fin); fclose( fout); 
+    return 0; 
+}
+</code>
+</pre>
+
