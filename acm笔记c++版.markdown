@@ -1688,8 +1688,8 @@ int main()
 #define INF 1000000000 
 int main() 
 { 
-    #ifdef 
-    LOCAL freopen(" data. in", "r", stdin); 
+    #ifdef LOCAL 
+    freopen(" data. in", "r", stdin); 
     freopen(" data. out", "w", stdout);
     #endif 
     int x, n = 0, min = INF, max = -INF, s = 0;
@@ -1741,3 +1741,23 @@ int main()
 </code>
 </pre>
 
+最大公约数与最小公倍数
+====================
+<pre>
+<code>
+int GCD(int num1,int num2)
+{
+    if(num1%num2==0)
+        return num2;
+    else 
+        return  GCD(num2,num1%num2);
+}
+int LCM(int a,int b)
+{
+    int temp_lcm;
+    temp_lcm=a*b/GCD(a,b);//最小公倍数等于两数之积除以最大公约数
+    return 
+        temp_lcm;
+}
+</code>
+</pre>
