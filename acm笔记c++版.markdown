@@ -1786,7 +1786,7 @@ printSet(s1);
 cout<<"\ns1.count(10) = "<<s1.count(10)<<", s1.count(80) = "<<s1.count(80)<<endl;
 cout<<"s1.find(10) : ";
 if (s1.find(10) != s1.end()) 
-    cout<<"OK!"<<endl;
+    cout<< "OK!"<<endl;
 else
     cout<<"not found!"<<endl;
 
