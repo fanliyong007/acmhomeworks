@@ -80,24 +80,28 @@ void InOrderTraveral2(BinTree BT)//中序遍历
         }
     }
 }
-void PostOrderTraversal2(BinTree BT)//后序遍历
-{
-    stack<BinTree>tree;
-    BinTree T=BT;
-    while(T||!tree.empty())
-    {
-        while (T)/*一直向左并将沿途节点压入堆栈*/
+//后序遍历(post order traverse) -- 先入右结点,后入左结点 
+void postOrderTraverse2(BinTree T){
+    stack<BinTree> s;
+    s.push(T);
+    BinTree cur; //当前访问的结点
+    BinTree pre = NULL; //前一个访问的结点 
+    while(!s.empty()){
+        cur = s.top();
+        //当前结点没有左右结点 或者 孩子结点都已经被访问过了 -- 输出当前的值 
+        if((cur->Left == NULL && cur->Right == NULL)|| (pre != NULL && (pre == cur->Left || pre == cur->Right))) 
         {
-            tree.push(T);
-            T=T->Left;
-        }
-        if(!tree.empty())
-        {
-            T=tree.top();
-            tree.pop();/*节点弹出堆栈*/
-            if(!T->Right)
-                printf("%5d",T->data);/*(访问）打印节点*/
-            T=T->Right;/*转向右子树*/
+            cout << cur->data << " " ;
+            s.pop();
+            pre = cur;
+        }else{
+            //先入右结点
+            if(cur->Right != NULL){
+                s.push(cur->Right) ;
+            } 
+            if(cur->Left != NULL){
+                s.push(cur->Left);
+            }
         }
     }
 }

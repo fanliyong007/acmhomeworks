@@ -277,7 +277,7 @@ void createBiTree(BiTree *T){
         if(!(*T)){  //创建失败 
             printf("结点申请失败\n"); 
             return; 
-        }
+        }   
         (*T)->data = e; //给结点赋值
         createBiTree(&(*T)->lchild); //构造左子树
         createBiTree(&(*T)->rchild);    //构造右子树 
@@ -459,7 +459,8 @@ void postOrderTraverse2(BiTree T){
     while(!s.empty()){
         cur = s.top();
         //当前结点没有左右结点 或者 孩子结点都已经被访问过了 -- 输出当前的值 
-        if((cur->lchild == NULL && cur->rchild == NULL)|| (pre != NULL && (pre == cur->lchild || pre == cur->rchild))) {
+        if((cur->lchild == NULL && cur->rchild == NULL)|| (pre != NULL && (pre == cur->lchild || pre == cur->rchild))) 
+        {
             cout << cur->data << " " ;
             s.pop();
             pre = cur;
