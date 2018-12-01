@@ -1,42 +1,23 @@
 #include<bits/stdc++.h>
 using namespace std;
+int arr[100000];
+int ans[100000];
 int main()
 {
-    string code[10];
-    map<string, int> mp;
-    code[0] = "-----";
-    code[1] = ".----";
-    code[2] = "..---";
-    code[3] = "...--";
-    code[4] = "....-";
-    code[5] = ".....";
-    code[6] = "-....";
-    code[7] = "--...";
-    code[8] = "---..";
-    code[9] = "----.";
-    mp["AV"] = 1;
-    mp["AH"] = 2;
-    mp["CH"] = 3;
-    mp["EP"] = 4;
-    mp["FA"] = 5;
-    mp["KC"] = 61;
-    mp["HH"] = 62;
-    mp["OH"] = 63;
-    mp["UH"] = 64;
-    mp["MH"] = 65;
-    string tmp;
-    int x;
-    int y;
-    int pos;
-    while(cin >> tmp >> pos)
-    {
-        x = pos / 10;
-        y = pos % 10;
-        if(mp[tmp]<10)
-            cout << code[0] << code[mp[tmp]] << code[x] << code[y];
-        else
-            cout << code[mp[tmp]/10] <<code[mp[tmp]%10] << code[x] << code[y];
-        cout << endl;
+    
+	arr[0]=0;arr[1]=1;arr[2]=1;
+    ans[0]=0;
+    ans[1] = 1;
+    ans[2] = 2;
+    for(int i=3;i<100000;i++)
+	{
+		arr[i]=arr[i-1]+arr[i-2];
+        ans[i] = arr[i] + ans[i - 1];
     }
-    return 0;
+	int a;
+	while(~scanf("%d",&a))
+	{
+        printf("%d\n", ans[a]);
+    }
+	return 0;
 }

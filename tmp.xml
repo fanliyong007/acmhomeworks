@@ -1,0 +1,25 @@
+<mapper namespace="包名+映射接口名如：com.zime.Mybatis.GetUserInfo">
+    <select id="getUser" parameterType="int"
+        resultMap="UserMap">
+        select u.id as userId,userName,courseName,corp,
+        c.id as courseId from user u left
+        join
+        userCourse uc on u.id
+        =uc.user_id left join course c on c.id=
+        uc.course_id where u.id=
+        =#{id}
+    </select>
+    <resultMap id="UserMap"
+        type="com.zime.Mybatis.User">
+        <constructor>
+            <idArg column="id" javaType="int"/>
+            <arg column="userName" javaType="String"/>
+            <arg column="corp" javaType="String"/>
+        </constructor>
+        <collection property="course" 
+            ofType="com.micro.profession.mybatis.resultMapTest.Course">
+            <id property="id" column="courseId"/>
+            <result property="courseName" column="courseName">
+        </collection>
+    </resultMap>
+</mapper>

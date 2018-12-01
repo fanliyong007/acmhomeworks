@@ -1,0 +1,169 @@
+Be a good soldier
+describe：
+Two years ago,I'm a air force soldier.My work is to draw a graphics about the process of air combat.
+But my skills are very poor.I'm not a good soldier.Now when I learned program ，I can use my laptop 
+to solve the problem,can you help me?
+Aircraft code
+------------------------------------------------------------
+  |    1   |    2      |     3      |    4       |   5     |
+------------------------------------------------------------
+0 |    AV  |    AH     |     CH     |    EP      |   FA    |
+6 |    KC  |    HH     |     OH     |    UH      |   MH    |
+------------------------------------------------------------
+Morse code
+-----------------
+code    |  mean |
+-----------------
+ -----  |    0  |
+-----------------
+ .----  |    1  |
+-----------------
+ ..---  |    2  |
+-----------------
+ ...--  |    3  |
+-----------------
+ ....-  |    4  |
+-----------------
+ .....  |    5  |
+-----------------
+ -....  |    6  |
+-----------------
+ --...  |    7  |
+-----------------
+ ---..  |    8  |
+-----------------
+ -----. |    9  |
+-----------------
+Input:
+All input are the Morse code,first ten code  are the aircraft code,
+after it five code is its x coordinate,after it five code is its y coordinate.
+The graphics is a 10X10 map.Use the aircraft code and its coordinate you can draw the graphics.
+Output:
+graphics about the process of air combat.The first line is " 0 1 2 3 4 5 6 7 8 9 ",
+next ten line you should output the aircraft code at his coordinate.
+Sample Input:
+-----..------------------..---.----.---------..---..---..--------..---.----...-------..---.----....------..---..---.....
+Sample Output:
+ 0 1 2 3 4 5 6 7 8 9 
+0AH                  
+1  AH                
+2    AH              
+3  AH                
+4  AH                
+5    AH              
+6                    
+7                    
+8                    
+9                    
+
+
+
+例程:
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Test
+{
+    public static void main(String args[])
+    {
+        Scanner read=new Scanner(System.in);
+        Map<String, Integer> code=new HashMap<>();
+        Map<Integer, String> aircraft=new HashMap<>();
+        code.put("-----",0);
+        code.put(".----",1);
+        code.put("..---",2);
+        code.put("...--",3);
+        code.put("....-",4);
+        code.put(".....",5);
+        code.put("-....",6);
+        code.put("--...",7);
+        code.put("---..",8);
+        code.put("----.",9);
+        aircraft.put(1,"AV");
+        aircraft.put(2,"AH");
+        aircraft.put(3,"CH");
+        aircraft.put(4,"EP");
+        aircraft.put(5,"FA");
+        aircraft.put(61,"KC");
+        aircraft.put(62,"HH");
+        aircraft.put(63,"OH");
+        aircraft.put(64,"UH");
+        aircraft.put(65,"MH");
+        while (read.hasNext())
+        {
+            String [][] graphics=new String[10][10];
+            String word=read.nextLine();
+            for(int i=0;i<word.length();i+=20)
+            {
+                Integer tmp=code.get(word.substring(i,i+5));
+                tmp=tmp*10+code.get(word.substring(i+5,i+10));
+                Integer posx=code.get(word.substring(i+10,i+15));
+                Integer posy=code.get(word.substring(i+15,i+20));
+                graphics[posx][posy]=aircraft.get(tmp);
+                System.out.println("code="+aircraft.get(tmp)+",posx="+posx+",posy="+posy);
+            }
+            System.out.println(" 0 1 2 3 4 5 6 7 8 9 ");
+            for(int i=0;i<10;i++)
+            {
+                System.out.print(i);
+                for(int j=0;j<10;j++)
+                {
+                    if(graphics[j][i]!=null)
+                    {
+                        System.out.print(graphics[j][i]);
+                    }
+                    else
+                    {
+                        System.out.print("  ");
+                    }
+                }
+                System.out.println();
+            }
+        }
+
+    }
+}
+测试数据制造程序:
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    string code[10];
+    map<string, int> mp;
+    code[0] = "-----";
+    code[1] = ".----";
+    code[2] = "..---";
+    code[3] = "...--";
+    code[4] = "....-";
+    code[5] = ".....";
+    code[6] = "-....";
+    code[7] = "--...";
+    code[8] = "---..";
+    code[9] = "----.";
+    mp["AV"] = 1;
+    mp["AH"] = 2;
+    mp["CH"] = 3;
+    mp["EP"] = 4;
+    mp["FA"] = 5;
+    mp["KC"] = 61;
+    mp["HH"] = 62;
+    mp["OH"] = 63;
+    mp["UH"] = 64;
+    mp["MH"] = 65;
+    string tmp;
+    int x;
+    int y;
+    int pos;
+    while(cin >> tmp >> pos)
+    {
+        x = pos / 10;
+        y = pos % 10;
+        if(mp[tmp]<10)
+            cout << code[0] << code[mp[tmp]] << code[x] << code[y];
+        else
+            cout << code[mp[tmp]/10] <<code[mp[tmp]%10] << code[x] << code[y];
+        cout << endl;
+    }
+    return 0;
+}
