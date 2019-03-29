@@ -1,25 +1,20 @@
-#include<iostream>
-#include<cstring>
+#define local
+#include<bits/stdc++.h>
 using namespace std;
-int price[10000];
-int main()
-{
-    int n = 0;
-    while(cin>>price[n])
-    {
-        n++;
+int main() {
+
+    string s = "I love you!";
+    for( float y = 1.3 ; y >= -1.1 ; y -= 0.06 ){
+        int index = 0;
+        for( float x = -1.2 ; x <= 1.2 ; x += 0.025 )
+            if( pow((x*x+y*y-1.0),3) - x*x*y*y*y <= 0.0 )
+                cout<<s[(index++)%s.size()];
+            else
+                cout<<' ';
+        cout<<endl;
     }
-    int max = -9999;
-    for (int i = 0; i < n;i++)
-    {
-        for (int j = i; j < n;j++)
-        {
-            if(price[j]-price[i]>max)
-            {
-                max = price[j] - price[i];
-            }
-        }
-    }
-    cout << max << endl;
+    #ifdef local
+    system("pause");
+    #endif
     return 0;
-} 
+}
