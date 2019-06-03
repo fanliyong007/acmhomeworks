@@ -23,8 +23,10 @@ int main()
         }
         for(int i=1;i<=5;i++)
         {
-            if(mybomb[i].dis)
-                
+            if(mybomb[i].dis==1)
+            {
+                //好累啊不想模拟了
+            }
         }
     }
     return 0;
