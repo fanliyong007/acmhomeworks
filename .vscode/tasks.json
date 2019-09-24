@@ -1,7 +1,7 @@
 {
-    "version": "0.1.0",
+    "version": "2.0.0",
     "command": "g++",
-    "args": ["-g","-Wall","-std=c++11","${file}","-o","${file}.exe"],    // 编译命令参数-g -Wall -std=c++11 
+    "args": ["-g","-Wall","-std=c++11","${file}","-o","${file}.exe","-DLOCAL"],    // 编译命令参数-g -Wall -std=c++11 
     "problemMatcher": {
         "owner": "cpp",
         "fileLocation": ["relative", "${workspaceRoot}"],

@@ -9,16 +9,16 @@
     "version": "0.2.0",
     "configurations": [
         
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - tmp",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "console": "internalConsole",
-            "stopOnEntry": false,
-            "mainClass": "tmp",
-            "args": ""
-        },
+        // {
+        //     "type": "java",
+        //     "name": "CodeLens (Launch) - tmp",
+        //     "request": "launch",
+        //     "cwd": "${workspaceFolder}",
+        //     "console": "internalConsole",
+        //     "stopOnEntry": false,
+        //     "mainClass": "tmp",
+        //     "args": ""
+        // },
         {
             "name": "C++",
             "type": "cppdbg",
